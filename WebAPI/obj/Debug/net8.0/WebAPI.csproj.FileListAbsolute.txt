@@ -1,0 +1,22 @@
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\WebAPI.csproj.AssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfo.cs
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TP NET BIEN\WebAPI\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\WebAPI.csproj.AssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfo.cs
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Facu\3ero\.net\TPNETBIEN\WebAPI\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.csproj.AssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfo.cs
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WebAPI\obj\Debug\net8.0\WebAPI.sourcelink.json

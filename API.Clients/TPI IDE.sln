@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Clients", "..\Facu\3ero\.net\TPNETBIEN\API.Clients\API.Clients.csproj", "{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Clients", "API.Clients.csproj", "{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Facu\3ero\.net\TPNETBIEN\Data\Data.csproj", "{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Model", "..\Facu\3ero\.net\TPNETBIEN\Domain.Model\Domain.Model.csproj", "{8ABC7DBF-F649-42FC-8875-174884DEBE21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Model", "..\Domain.Model\Domain.Model.csproj", "{8ABC7DBF-F649-42FC-8875-174884DEBE21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "..\Facu\3ero\.net\TPNETBIEN\DTOs\DTOs.csproj", "{292CF1F0-0610-4AB3-AE86-B568F1E0C0BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "..\DTOs\DTOs.csproj", "{292CF1F0-0610-4AB3-AE86-B568F1E0C0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "..\Facu\3ero\.net\TPNETBIEN\WebAPI\WebAPI.csproj", "{BB31E816-EE22-4AF7-88AD-5125C6468A25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "..\WebAPI\WebAPI.csproj", "{BB31E816-EE22-4AF7-88AD-5125C6468A25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms", "..\Facu\3ero\.net\TPNETBIEN\WindowsForms\WindowsForms.csproj", "{21CD0348-082E-40E9-BFA7-AF6603DF0998}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms", "..\WindowsForms\WindowsForms.csproj", "{21CD0348-082E-40E9-BFA7-AF6603DF0998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Services", "..\Facu\3ero\.net\TPNETBIEN\Application.Services\Application.Services.csproj", "{94347222-FA5F-4558-9B60-61989834FC32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Services", "..\Application.Services\Application.Services.csproj", "{94347222-FA5F-4558-9B60-61989834FC32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
