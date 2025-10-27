@@ -11,7 +11,7 @@ namespace Domain.Model
         public int IdPlan { get; set; }
         public string Descripcion { get; set; }
 
-        // Atributos para la relacion con especialidad
+
 
         public Plan() { }
 

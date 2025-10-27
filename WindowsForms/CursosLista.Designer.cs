@@ -38,7 +38,7 @@
             // 
             // refrescarButton
             // 
-            refrescarButton.Location = new Point(265, 18);
+            refrescarButton.Location = new Point(429, 19);
             refrescarButton.Name = "refrescarButton";
             refrescarButton.Size = new Size(80, 23);
             refrescarButton.TabIndex = 20;

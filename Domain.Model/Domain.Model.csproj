@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Alumno.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Alumno" />
+    <None Remove="NewFile1.txt" />
+  </ItemGroup>
+
 </Project>

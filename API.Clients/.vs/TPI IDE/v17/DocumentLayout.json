@@ -1,59 +1,119 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\API.Clients\\",
+  "WorkspaceRootPath": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\API.Clients\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\paginamain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\paginamain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{94347222-FA5F-4558-9B60-61989834FC32}|..\\Application.Services\\Application.Services.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\application.services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\usuarioslista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{94347222-FA5F-4558-9B60-61989834FC32}|..\\Application.Services\\Application.Services.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\application.services\\planservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\usuarioslista.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{94347222-FA5F-4558-9B60-61989834FC32}|..\\Application.Services\\Application.Services.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\application.services\\materiaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\usuarioslista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\planendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{94347222-FA5F-4558-9B60-61989834FC32}|..\\Application.Services\\Application.Services.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\application.services\\application.services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\alumnoinscripcionendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\api.clients\\usuarioapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|solutionrelative:usuarioapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\materiaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\api.clients\\cursoapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|solutionrelative:cursoapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\personaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\usuarioendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\formlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\cursoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\windowsforms\\paginamain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\webapi\\endpoints\\especialidadendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\data\\tpicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{94347222-FA5F-4558-9B60-61989834FC32}|..\\Application.Services\\Application.Services.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\application.services\\alumnoinscripcionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\data\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\api.clients\\especialidadapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|solutionrelative:especialidadapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\data\\data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{94347222-FA5F-4558-9B60-61989834FC32}|..\\Application.Services\\Application.Services.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\application.services\\especialidadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB31E816-EE22-4AF7-88AD-5125C6468A25}|..\\WebAPI\\WebAPI.csproj|c:\\users\\marti\\onedrive\\escritorio\\facu\\3er a\u00F1o\\.net\\tp bien\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\especialidadrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\tpicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8ABC7DBF-F649-42FC-8875-174884DEBE21}|..\\Domain.Model\\Domain.Model.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\domain.model\\especialidadcriteria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{292CF1F0-0610-4AB3-AE86-B568F1E0C0BC}|..\\DTOs\\DTOs.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\dtos\\especialidadcriteriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{292CF1F0-0610-4AB3-AE86-B568F1E0C0BC}|..\\DTOs\\DTOs.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\dtos\\especialidaddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\cursorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{292CF1F0-0610-4AB3-AE86-B568F1E0C0BC}|..\\DTOs\\DTOs.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\dtos\\plancriteriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{292CF1F0-0610-4AB3-AE86-B568F1E0C0BC}|..\\DTOs\\DTOs.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\dtos\\plandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\api.clients\\planapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D100FBB-76F0-4B62-8AAD-DCD2524F1A3D}|API.Clients.csproj|solutionrelative:planapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8ABC7DBF-F649-42FC-8875-174884DEBE21}|..\\Domain.Model\\Domain.Model.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\domain.model\\plancriteria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8ABC7DBF-F649-42FC-8875-174884DEBE21}|..\\Domain.Model\\Domain.Model.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\domain.model\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8ABC7DBF-F649-42FC-8875-174884DEBE21}|..\\Domain.Model\\Domain.Model.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\domain.model\\domain.model.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\planrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\comisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\personarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86B2C53F-140A-4D54-8FFD-93F1BDD27F51}|..\\Data\\Data.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\data\\materiarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\windowsforms\\cursoslista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\windowsforms\\cursodetalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CD0348-082E-40E9-BFA7-AF6603DF0998}|..\\WindowsForms\\WindowsForms.csproj|c:\\users\\marti\\onedrive\\escritorio\\academia-.net\\windowsforms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,225 +123,449 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsuariosLista.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\UsuariosLista.Designer.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\UsuariosLista.Designer.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\UsuariosLista.Designer.cs",
-              "RelativeToolTip": "..\\WindowsForms\\UsuariosLista.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T04:30:18.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsuariosLista.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\UsuariosLista.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\UsuariosLista.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\UsuariosLista.cs",
-              "RelativeToolTip": "..\\WindowsForms\\UsuariosLista.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T04:29:57.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsuariosLista.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\UsuariosLista.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\UsuariosLista.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\UsuariosLista.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\WindowsForms\\UsuariosLista.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T04:29:08.809Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\Program.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\Program.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\Program.cs",
-              "RelativeToolTip": "..\\WindowsForms\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\Program.cs",
+              "RelativeToolTip": "..\\WebAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T04:01:28.326Z",
+              "WhenOpened": "2025-10-20T23:15:26.442Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "formLogin.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\formLogin.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\formLogin.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\formLogin.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\WindowsForms\\formLogin.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:45:28.465Z",
-              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PaginaMain.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\PaginaMain.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\PaginaMain.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\PaginaMain.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\WindowsForms\\PaginaMain.cs [Dise\u00F1o]",
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "..\\Application.Services\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\UsuarioService.cs",
+              "RelativeToolTip": "..\\Application.Services\\UsuarioService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:15:13.362Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-20T23:19:58.559Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaginaMain.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\PaginaMain.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\PaginaMain.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\PaginaMain.cs",
-              "RelativeToolTip": "..\\WindowsForms\\PaginaMain.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:15:24.633Z",
-              "EditorCaption": ""
+              "DocumentIndex": 2,
+              "Title": "WebAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\WebAPI.csproj",
+              "RelativeDocumentMoniker": "..\\WebAPI\\WebAPI.csproj",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\WebAPI.csproj",
+              "RelativeToolTip": "..\\WebAPI\\WebAPI.csproj",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAIwBoAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-20T23:13:55.291Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UsuarioApiClient.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\API.Clients\\UsuarioApiClient.cs",
-              "RelativeDocumentMoniker": "UsuarioApiClient.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\API.Clients\\UsuarioApiClient.cs",
-              "RelativeToolTip": "UsuarioApiClient.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "PlanEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\PlanEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\PlanEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\PlanEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\PlanEndpoints.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAMwA4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:52:43.595Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T22:51:23.78Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WebAPI\\Program.cs",
-              "RelativeDocumentMoniker": "..\\WebAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WebAPI\\Program.cs",
-              "RelativeToolTip": "..\\WebAPI\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAqwB4AAAAbAAAAAAAAAA==",
+              "Title": "AlumnoInscripcionEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\AlumnoInscripcionEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\AlumnoInscripcionEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\AlumnoInscripcionEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\AlumnoInscripcionEndpoints.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwCwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T04:13:16.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T23:05:05.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Application.Services.csproj",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\Application.Services.csproj",
+              "RelativeDocumentMoniker": "..\\Application.Services\\Application.Services.csproj",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\Application.Services.csproj",
+              "RelativeToolTip": "..\\Application.Services\\Application.Services.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-20T22:39:24.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MateriaService.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\MateriaService.cs",
+              "RelativeDocumentMoniker": "..\\Application.Services\\MateriaService.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\MateriaService.cs",
+              "RelativeToolTip": "..\\Application.Services\\MateriaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:08:55.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlanService.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\PlanService.cs",
+              "RelativeDocumentMoniker": "..\\Application.Services\\PlanService.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\PlanService.cs",
+              "RelativeToolTip": "..\\Application.Services\\PlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T23:21:43.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MateriaEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\MateriaEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\MateriaEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\MateriaEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\MateriaEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T23:14:20.648Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "CursoApiClient.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\API.Clients\\CursoApiClient.cs",
-              "RelativeDocumentMoniker": "CursoApiClient.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\API.Clients\\CursoApiClient.cs",
-              "RelativeToolTip": "CursoApiClient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "PersonaEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\PersonaEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\PersonaEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\PersonaEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\PersonaEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:52:42.636Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T22:52:33.323Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "formLogin.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\formLogin.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\formLogin.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\formLogin.cs",
-              "RelativeToolTip": "..\\WindowsForms\\formLogin.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAjwBUAAAAMAAAAAAAAAA==",
+              "Title": "UsuarioEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\UsuarioEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\UsuarioEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\UsuarioEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\UsuarioEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:45:34.553Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "formLogin.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\formLogin.Designer.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\formLogin.Designer.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\formLogin.Designer.cs",
-              "RelativeToolTip": "..\\WindowsForms\\formLogin.Designer.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAiwIcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:47:14.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T22:52:57.819Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "PaginaMain.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\PaginaMain.Designer.cs",
-              "RelativeDocumentMoniker": "..\\WindowsForms\\PaginaMain.Designer.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WindowsForms\\PaginaMain.Designer.cs",
-              "RelativeToolTip": "..\\WindowsForms\\PaginaMain.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "EspecialidadEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\EspecialidadEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\EspecialidadEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\EspecialidadEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\EspecialidadEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T03:32:31.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T23:03:11.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\Data\\UsuarioRepository.cs",
-              "RelativeDocumentMoniker": "..\\Data\\UsuarioRepository.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\Data\\UsuarioRepository.cs",
-              "RelativeToolTip": "..\\Data\\UsuarioRepository.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAcwFAAAAANAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "CursoEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\CursoEndpoints.cs",
+              "RelativeDocumentMoniker": "..\\WebAPI\\EndPoints\\CursoEndpoints.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WebAPI\\EndPoints\\CursoEndpoints.cs",
+              "RelativeToolTip": "..\\WebAPI\\EndPoints\\CursoEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T22:08:12.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T23:03:49.991Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "TPIContext.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\Data\\TPIContext.cs",
-              "RelativeDocumentMoniker": "..\\Data\\TPIContext.cs",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\Data\\TPIContext.cs",
-              "RelativeToolTip": "..\\Data\\TPIContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
+              "Title": "AlumnoInscripcionService.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\AlumnoInscripcionService.cs",
+              "RelativeDocumentMoniker": "..\\Application.Services\\AlumnoInscripcionService.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\AlumnoInscripcionService.cs",
+              "RelativeToolTip": "..\\Application.Services\\AlumnoInscripcionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T22:05:01.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T23:08:55.093Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Data.csproj",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\Data\\Data.csproj",
-              "RelativeDocumentMoniker": "..\\Data\\Data.csproj",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\Data\\Data.csproj",
-              "RelativeToolTip": "..\\Data\\Data.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-25T21:59:10.957Z",
-              "EditorCaption": ""
+              "DocumentIndex": 14,
+              "Title": "EspecialidadApiClient.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\API.Clients\\EspecialidadApiClient.cs",
+              "RelativeDocumentMoniker": "EspecialidadApiClient.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\API.Clients\\EspecialidadApiClient.cs",
+              "RelativeToolTip": "EspecialidadApiClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T23:01:52.184Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
+              "Title": "EspecialidadRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\EspecialidadRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\EspecialidadRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\EspecialidadRepository.cs",
+              "RelativeToolTip": "..\\Data\\EspecialidadRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:59:46.4Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "EspecialidadCriteria.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\EspecialidadCriteria.cs",
+              "RelativeDocumentMoniker": "..\\Domain.Model\\EspecialidadCriteria.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\EspecialidadCriteria.cs",
+              "RelativeToolTip": "..\\Domain.Model\\EspecialidadCriteria.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:59:03.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WebAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "..\\WebAPI\\appsettings.json",
-              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Facu\\3er A\u00F1o\\.net\\TP bien\\WebAPI\\appsettings.json",
-              "RelativeToolTip": "..\\WebAPI\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\appsettings.json",
+              "RelativeDocumentMoniker": "..\\Data\\appsettings.json",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\appsettings.json",
+              "RelativeToolTip": "..\\Data\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-25T03:40:51.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T22:55:25.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EspecialidadService.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\EspecialidadService.cs",
+              "RelativeDocumentMoniker": "..\\Application.Services\\EspecialidadService.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Application.Services\\EspecialidadService.cs",
+              "RelativeToolTip": "..\\Application.Services\\EspecialidadService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:49:13.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "TPIContext.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\TPIContext.cs",
+              "RelativeDocumentMoniker": "..\\Data\\TPIContext.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\TPIContext.cs",
+              "RelativeToolTip": "..\\Data\\TPIContext.cs",
+              "ViewState": "AgIAAJABAAAAAAAAAAAYwKoBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:22:17.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "EspecialidadDTO.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\EspecialidadDTO.cs",
+              "RelativeDocumentMoniker": "..\\DTOs\\EspecialidadDTO.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\EspecialidadDTO.cs",
+              "RelativeToolTip": "..\\DTOs\\EspecialidadDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:48:16.238Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "EspecialidadCriteriaDTO.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\EspecialidadCriteriaDTO.cs",
+              "RelativeDocumentMoniker": "..\\DTOs\\EspecialidadCriteriaDTO.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\EspecialidadCriteriaDTO.cs",
+              "RelativeToolTip": "..\\DTOs\\EspecialidadCriteriaDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:47:32.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CursoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\CursoRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\CursoRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\CursoRepository.cs",
+              "RelativeToolTip": "..\\Data\\CursoRepository.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAYwJAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:26:13.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "PlanCriteriaDTO.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\PlanCriteriaDTO.cs",
+              "RelativeDocumentMoniker": "..\\DTOs\\PlanCriteriaDTO.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\PlanCriteriaDTO.cs",
+              "RelativeToolTip": "..\\DTOs\\PlanCriteriaDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:35:19.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PlanDTO.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\PlanDTO.cs",
+              "RelativeDocumentMoniker": "..\\DTOs\\PlanDTO.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\PlanDTO.cs",
+              "RelativeToolTip": "..\\DTOs\\PlanDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:34:58.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PlanApiClient.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\API.Clients\\PlanApiClient.cs",
+              "RelativeDocumentMoniker": "PlanApiClient.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\API.Clients\\PlanApiClient.cs",
+              "RelativeToolTip": "PlanApiClient.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAYwI4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:34:18.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PlanCriteria.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\PlanCriteria.cs",
+              "RelativeDocumentMoniker": "..\\Domain.Model\\PlanCriteria.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\PlanCriteria.cs",
+              "RelativeToolTip": "..\\Domain.Model\\PlanCriteria.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:33:14.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Plan.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\Plan.cs",
+              "RelativeDocumentMoniker": "..\\Domain.Model\\Plan.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\Plan.cs",
+              "RelativeToolTip": "..\\Domain.Model\\Plan.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAcwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:30:36.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Domain.Model.csproj",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\Domain.Model.csproj",
+              "RelativeDocumentMoniker": "..\\Domain.Model\\Domain.Model.csproj",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\Domain.Model.csproj",
+              "RelativeToolTip": "..\\Domain.Model\\Domain.Model.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-20T22:32:19.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "PlanRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\PlanRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\PlanRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\PlanRepository.cs",
+              "RelativeToolTip": "..\\Data\\PlanRepository.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwG0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:31:40.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PersonaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\PersonaRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\PersonaRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\PersonaRepository.cs",
+              "RelativeToolTip": "..\\Data\\PersonaRepository.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAYwIgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:24:49.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\UsuarioRepository.cs",
+              "RelativeToolTip": "..\\Data\\UsuarioRepository.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAA0wJsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:24:22.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MateriaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\MateriaRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\MateriaRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\MateriaRepository.cs",
+              "RelativeToolTip": "..\\Data\\MateriaRepository.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAYwHYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:22:02.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ComisionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\ComisionRepository.cs",
+              "RelativeDocumentMoniker": "..\\Data\\ComisionRepository.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Data\\ComisionRepository.cs",
+              "RelativeToolTip": "..\\Data\\ComisionRepository.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAqwGUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:11:52.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "CursosLista.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WindowsForms\\CursosLista.cs",
+              "RelativeDocumentMoniker": "..\\WindowsForms\\CursosLista.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WindowsForms\\CursosLista.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\WindowsForms\\CursosLista.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:13:09.708Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "CursoDetalle.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WindowsForms\\CursoDetalle.cs",
+              "RelativeDocumentMoniker": "..\\WindowsForms\\CursoDetalle.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WindowsForms\\CursoDetalle.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\WindowsForms\\CursoDetalle.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:13:07.534Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "formLogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WindowsForms\\formLogin.cs",
+              "RelativeDocumentMoniker": "..\\WindowsForms\\formLogin.cs",
+              "ToolTip": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\WindowsForms\\formLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\WindowsForms\\formLogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T22:13:01.743Z"
             }
           ]
         }

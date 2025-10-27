@@ -1,6 +1,8 @@
-﻿using Domain.Model;
+﻿
+using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
+
 
 
 namespace Data
@@ -77,6 +79,7 @@ namespace Data
 
 
             var comisiones = new List<Comision>();
+
             string connectionString = new TPIContext().Database.GetConnectionString();
             string searchPattern = $"%{criteria.Texto}%";
 
