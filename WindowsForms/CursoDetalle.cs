@@ -54,7 +54,7 @@ namespace WindowsForms
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            //if (this.ValidateCurso())
+
 
             try
             {

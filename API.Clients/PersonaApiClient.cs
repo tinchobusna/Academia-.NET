@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTOs;
 
-namespace API.Clients
+namespace API.Personas
 {
     public class PersonaApiClient
     {

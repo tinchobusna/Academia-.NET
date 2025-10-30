@@ -109,3 +109,15 @@ C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-w
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.pdb
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.genruntimeconfig.cache
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\ref\WindowsForms.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.PersonaDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.PersonasLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsFormsCurso.ComisionesLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsFormsCurso.PersonasDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.PlanDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsFormsCurso.PlanesLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsFormsCurso.PersonaDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.PlanesLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.ComisionesLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.ComisionDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.MateriaDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.MateriasLista.resources

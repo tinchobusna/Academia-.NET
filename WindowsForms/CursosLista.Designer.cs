@@ -94,7 +94,7 @@
             Controls.Add(agregarButton);
             Controls.Add(cursosDataGridView);
             Name = "CursosLista";
-            Text = "Form1";
+            Text = "Lista de Cursos ";
             ((System.ComponentModel.ISupportInitialize)cursosDataGridView).EndInit();
             ResumeLayout(false);
         }
