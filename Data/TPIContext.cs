@@ -69,6 +69,11 @@ namespace Data
                     .IsRequired()
                     .HasMaxLength(360);
 
+                //entity.HasData(new
+                //{
+                //    Descripcion = "Especialidad básica",
+                //    IdEspecialidad = 1
+                //});
 
             });
 
@@ -100,6 +105,12 @@ namespace Data
                     .HasForeignKey(e => e.IdEspecialidad)
                     .OnDelete(DeleteBehavior.Cascade);
 
+                //entity.HasData(new
+                //{
+                //    IdPlan = 1,
+                //    Descripcion = "Plan básico",
+                //    IdEspecialidad = 1
+                //});
 
             });
 
@@ -152,6 +163,38 @@ namespace Data
                     .HasForeignKey(e => e.IdPlan)
                     .OnDelete(DeleteBehavior.Cascade);
 
+                // Datos iniciales
+
+                //entity.HasData(new
+                //{
+                //    IdPersona = 1,
+                //    Apellido = "Admin",
+                //    Direccion = "Admin 123",
+                //    Email = "admin@gmail.com",
+                //    FechaNacimiento = new DateTime(2004, 3, 3),
+                //    Legajo = 1234,
+                //    Telefono = "3419999999",
+                //    TipoPersona = "Administrador",
+                //    IdPlan = 1
+                //}
+                //);
+
+
+                //   entity.HasData(new
+                //   {
+
+                //       IdPersona = 2,
+                //       Apellido = "Profe",
+                //       Direccion = "Profe 123",
+                //       Email = "profe@gmail.com",
+                //       FechaNacimiento = new DateTime(2004, 3, 3),
+                //       Legajo = 1234,
+                //       Telefono = "3419999999",
+                //       TipoPersona = "Profesor",
+                //       IdPlan = 1
+                //   }
+                //);
+
             });
 
             modelBuilder.Entity<Usuario>(static entity =>
@@ -201,6 +244,33 @@ namespace Data
                     .HasForeignKey(e => e.IdPersona)
                     .OnDelete(DeleteBehavior.Cascade);
 
+                // Datos iniciales
+
+                //entity.HasData(new Usuario
+                //{
+                //    IdUsuario = 1,
+                //    Apellido = "Admin",
+                //    Nombre = "Admin",
+                //    Clave = "123",
+                //    Email = "admin@gmail.com",
+                //    Habilitado = true,
+                //    NombreUsuario = "admin",
+                //    IdPersona = 1
+                //}
+                //);
+
+                //   entity.HasData(new Usuario
+                //   {
+                //       IdUsuario = 2,
+                //       Apellido = "Profe",
+                //       Nombre = "Profe",
+                //       Clave = "123",
+                //       Email = "profe@gmail.com",
+                //       Habilitado = true,
+                //       NombreUsuario = "profe",
+                //       IdPersona = 2
+                //   }
+                //);
 
             });
 
@@ -384,10 +454,10 @@ namespace Data
                 // Relación con Persona (Profesor)
                 entity.Property(e => e.IdProfesor)
                     .IsRequired()
-                    .HasField("_ProfesorId");
+                    .HasField("_profesorId");
 
                 entity.Navigation(e => e.Profesor)
-                    .HasField("_Profesor");
+                    .HasField("_profesor");
 
                 entity.HasOne(e => e.Profesor)
                     .WithMany()

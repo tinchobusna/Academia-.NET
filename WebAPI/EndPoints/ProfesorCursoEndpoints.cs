@@ -2,7 +2,7 @@
 using Application.Services;
 using Microsoft.AspNetCore.Http;
 
-namespace WebAPI.EndPoints
+namespace ProfesorCursoAPI.EndPoints
 {
     public static class ProfesorCursoEndpoints
     {

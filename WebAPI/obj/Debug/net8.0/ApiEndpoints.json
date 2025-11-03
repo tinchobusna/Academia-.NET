@@ -1,5 +1,155 @@
 [
   {
+    "ContainingType": "WebAPI.EndPoints.AlumnoInscripcionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAlumnoInscripcionEndpoints\u003Eb__0_1",
+    "RelativePath": "alumnosInscripciones",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTOs.AlumnoInscripcionDTO, DTOs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetAllAlumnosInscripciones"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.AlumnoInscripcionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAlumnoInscripcionEndpoints\u003Eb__0_2",
+    "RelativePath": "alumnosInscripciones",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.AlumnoInscripcionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.AlumnoInscripcionDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "AddAlumnoInscripcion"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.AlumnoInscripcionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAlumnoInscripcionEndpoints\u003Eb__0_4",
+    "RelativePath": "alumnosInscripciones/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "DeleteAlumnoInscripcion"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.AlumnoInscripcionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAlumnoInscripcionEndpoints\u003Eb__0_0",
+    "RelativePath": "alumnosInscripciones/{id}/{idCurso}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idCurso",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.AlumnoInscripcionDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAlumnoInscripcion"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.AlumnoInscripcionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAlumnoInscripcionEndpoints\u003Eb__0_3",
+    "RelativePath": "alumnosInscripciones/{idInscripcion}/{idCurso}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idInscripcion",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idCurso",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "DTOs.AlumnoInscripcionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "UpdateAlumnosInscripciones"
+  },
+  {
     "ContainingType": "WebAPI.EndPoints.ComisionEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapComisionEndpoints\u003Eb__0_1",
     "RelativePath": "comisiones",
@@ -266,7 +416,7 @@
   },
   {
     "ContainingType": "WebAPI.EndPoints.CursoEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapCursoEndpoints\u003Eb__0_4",
+    "Method": "\u003CMapCursoEndpoints\u003Eb__0_5",
     "RelativePath": "cursos/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -294,7 +444,35 @@
   },
   {
     "ContainingType": "WebAPI.EndPoints.CursoEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapCursoEndpoints\u003Eb__0_5",
+    "Method": "\u003CMapCursoEndpoints\u003Eb__0_4",
+    "RelativePath": "cursos/bajarCupo/{id}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.CursoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "BajarCupoCurso"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.CursoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCursoEndpoints\u003Eb__0_6",
     "RelativePath": "cursos/criteria",
     "HttpMethod": "GET",
     "IsController": false,
@@ -316,7 +494,170 @@
     "EndpointName": "GetCursosByCriteria"
   },
   {
-    "ContainingType": "WebAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
+    "ContainingType": "EspecialidadAPI.EndPoints.EspecialidadEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapEspecialidadEndpoints\u003Eb__0_1",
+    "RelativePath": "especialidades",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTOs.EspecialidadDTO, DTOs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetAllEspecialidad"
+  },
+  {
+    "ContainingType": "EspecialidadAPI.EndPoints.EspecialidadEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapEspecialidadEndpoints\u003Eb__0_2",
+    "RelativePath": "especialidades",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.EspecialidadDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.EspecialidadDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "AddEspecialidad"
+  },
+  {
+    "ContainingType": "EspecialidadAPI.EndPoints.EspecialidadEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapEspecialidadEndpoints\u003Eb__0_0",
+    "RelativePath": "especialidades/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.EspecialidadDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetEspecialidad"
+  },
+  {
+    "ContainingType": "EspecialidadAPI.EndPoints.EspecialidadEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapEspecialidadEndpoints\u003Eb__0_3",
+    "RelativePath": "especialidades/{id}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.EspecialidadDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "UpdateEspecialidad"
+  },
+  {
+    "ContainingType": "EspecialidadAPI.EndPoints.EspecialidadEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapEspecialidadEndpoints\u003Eb__0_4",
+    "RelativePath": "especialidades/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "DeleteEspecialidad"
+  },
+  {
+    "ContainingType": "EspecialidadAPI.EndPoints.EspecialidadEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapEspecialidadEndpoints\u003Eb__0_5",
+    "RelativePath": "especialidades/criteria",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "texto",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetEspecialidadByCriteria"
+  },
+  {
+    "ContainingType": "MateriaAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapMateriaEndpoints\u003Eb__0_1",
     "RelativePath": "materias",
     "HttpMethod": "GET",
@@ -335,7 +676,7 @@
     "EndpointName": "GetAllMaterias"
   },
   {
-    "ContainingType": "WebAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
+    "ContainingType": "MateriaAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapMateriaEndpoints\u003Eb__0_2",
     "RelativePath": "materias",
     "HttpMethod": "POST",
@@ -365,7 +706,7 @@
     "EndpointName": "AddMateria"
   },
   {
-    "ContainingType": "WebAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
+    "ContainingType": "MateriaAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapMateriaEndpoints\u003Eb__0_0",
     "RelativePath": "materias/{id}",
     "HttpMethod": "GET",
@@ -395,7 +736,7 @@
     "EndpointName": "GetMateria"
   },
   {
-    "ContainingType": "WebAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
+    "ContainingType": "MateriaAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapMateriaEndpoints\u003Eb__0_3",
     "RelativePath": "materias/{id}",
     "HttpMethod": "PUT",
@@ -423,7 +764,7 @@
     "EndpointName": "UpdateMateria"
   },
   {
-    "ContainingType": "WebAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
+    "ContainingType": "MateriaAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapMateriaEndpoints\u003Eb__0_4",
     "RelativePath": "materias/{id}",
     "HttpMethod": "DELETE",
@@ -456,7 +797,7 @@
     "EndpointName": "DeleteMateria"
   },
   {
-    "ContainingType": "WebAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
+    "ContainingType": "MateriaAPI.EndPoints.MateriaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapMateriaEndpoints\u003Eb__0_5",
     "RelativePath": "materias/criteria",
     "HttpMethod": "GET",
@@ -635,6 +976,308 @@
       }
     ],
     "EndpointName": "GetPersonasByCriteria"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.PlanEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapPlanEndpoints\u003Eb__0_1",
+    "RelativePath": "planes",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTOs.PlanDTO, DTOs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetAllPlanes"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.PlanEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapPlanEndpoints\u003Eb__0_2",
+    "RelativePath": "planes",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.PlanDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.PlanDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "AddPlan"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.PlanEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapPlanEndpoints\u003Eb__0_0",
+    "RelativePath": "planes/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.PlanDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetPlan"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.PlanEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapPlanEndpoints\u003Eb__0_3",
+    "RelativePath": "planes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.PlanDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "UpdatePlan"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.PlanEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapPlanEndpoints\u003Eb__0_4",
+    "RelativePath": "planes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "DeletePlan"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.PlanEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapPlanEndpoints\u003Eb__0_5",
+    "RelativePath": "planes/criteria",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "texto",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetPlanesByCriteria"
+  },
+  {
+    "ContainingType": "ProfesorCursoAPI.EndPoints.ProfesorCursoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapProfesorCursoEndpoints\u003Eb__0_0",
+    "RelativePath": "ProfesoresCursos",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.ProfesorCursoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTOs.ProfesorCursoDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "AddProfesorCurso"
+  },
+  {
+    "ContainingType": "ProfesorCursoAPI.EndPoints.ProfesorCursoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapProfesorCursoEndpoints\u003Eb__0_2",
+    "RelativePath": "ProfesoresCursos/{idCurso}/{idProfesor}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idCurso",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idProfesor",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "DTOs.ProfesorCursoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "UpdateProfesorCursoByCursoProfesor"
+  },
+  {
+    "ContainingType": "ProfesorCursoAPI.EndPoints.ProfesorCursoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapProfesorCursoEndpoints\u003Eb__0_1",
+    "RelativePath": "ProfesoresCursos/criteria",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProfesor",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetProfesorCursoByCriteria"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.ReporteEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapReporteEndpoints\u003Eb__0_0",
+    "RelativePath": "reportes/cursos",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Byte[]",
+        "MediaTypes": [
+          "application/pdf"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "GetReporteCursos"
+  },
+  {
+    "ContainingType": "WebAPI.EndPoints.ReporteEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapReporteEndpoints\u003Eb__0_1",
+    "RelativePath": "reportes/planes",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Byte[]",
+        "MediaTypes": [
+          "application/pdf"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "GetReportePlanes"
   },
   {
     "ContainingType": "WebAPI.EndPoints.UsuarioEndpoints\u002B\u003C\u003Ec",

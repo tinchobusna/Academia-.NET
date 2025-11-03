@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsCurso
+﻿namespace WindowsForms
 {
     partial class PersonaDetalle
     {

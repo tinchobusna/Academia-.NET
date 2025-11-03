@@ -3,7 +3,7 @@ using Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAPI.EndPoints
+namespace MateriaAPI.EndPoints
 {
     public static class MateriaEndpoints
     {

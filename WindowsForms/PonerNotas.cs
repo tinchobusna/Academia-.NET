@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using API.AlumnosInscripciones;
 using API.Cursos;
-using API.DocentesCursos;
+using API.ProfesoresCursos;
 using API.Usuarios;
 using API.Materias;
 using API.Personas;
 using DTOs;
-using WindowsForms;
-using API.Clients;
 
 
 namespace WindowsForms
@@ -42,14 +40,14 @@ namespace WindowsForms
 
         private async void Poner_notas_load(object sender, EventArgs e)
         {
-            var docenteCursos = await DocenteCursoApiClient.GetDocenteCursoByCriteria(usuario.IdPersona);
+            var profesorCursos = await ProfesorCursoApiClient.GetProfesorCursoByCriteria(usuario.IdPersona);
 
             var cursosProfesor = new List<CursoDTO>();
 
 
-            if (docenteCursos != null)
+            if (profesorCursos != null)
             {
-                foreach (var dc in docenteCursos)
+                foreach (var dc in profesorCursos)
                 {
                     var curso = await CursoApiClient.GetAsync(dc.IdCurso);
                     if (curso != null)

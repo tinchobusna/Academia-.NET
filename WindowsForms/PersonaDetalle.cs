@@ -13,7 +13,7 @@ using API.Planes;
 using DTOs;
 using WindowsForms;
 
-namespace WindowsFormsCurso
+namespace WindowsForms
 {
     public partial class PersonaDetalle : Form
     {

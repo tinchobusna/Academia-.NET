@@ -451,9 +451,25 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.OpenApi": {
+            "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
-              "version": "[2.3.2, )"
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.18, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2025.7.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
