@@ -11,14 +11,14 @@ namespace Application.Services
     {
         public async Task<ProfesorCursoDTO> Add(ProfesorCursoDTO dto)
         {
-            var ProfesorCursoRepository = new ProfesorCursoRepository();
+            var profesorCursoRepository = new ProfesorCursoRepository();
 
-            ProfesorCurso ProfesorCurso = new ProfesorCurso(dto.Cargo, dto.IdCurso, dto.IdProfesor);
+            ProfesorCurso profesorCurso = new ProfesorCurso(dto.Cargo, dto.IdCurso, dto.IdProfesor);
 
-            await ProfesorCursoRepository.Add(ProfesorCurso);
+            await profesorCursoRepository.Add(profesorCurso);
 
-            dto.IdCurso = ProfesorCurso.IdCurso;
-            dto.IdProfesor = ProfesorCurso.IdProfesor;
+            dto.IdCurso = profesorCurso.IdCurso;
+            dto.IdProfesor = profesorCurso.IdProfesor;
 
             return dto;
         }
@@ -30,9 +30,9 @@ namespace Application.Services
                 IdProfesor = criteriaDto.IdProfesor
             };
 
-            var ProfesorCursoRepository = new ProfesorCursoRepository();
+            var profesorCursoRepository = new ProfesorCursoRepository();
 
-            var entidades = await ProfesorCursoRepository.FindByCriteria(criteria);
+            var entidades = await profesorCursoRepository.FindByCriteria(criteria);
 
             var dtos = entidades.Select(dc => new ProfesorCursoDTO
             {
@@ -43,15 +43,33 @@ namespace Application.Services
 
             return dtos;
         }
-
+        /*
         public async Task<bool> Update(ProfesorCursoDTO dto)
         {
-            var ProfesorCursoRepository = new ProfesorCursoRepository();
+            var profesorCursoRepository = new ProfesorCursoRepository();
 
-            ProfesorCurso ProfesorCurso = new ProfesorCurso(dto.IdAsignacion, dto.Cargo);
-            ProfesorCurso.SetCursoId(dto.IdCurso);
-            ProfesorCurso.SetProfesorId(dto.IdProfesor);
-            return await ProfesorCursoRepository.Update(ProfesorCurso);
+            ProfesorCurso profesorCurso = new ProfesorCurso(dto.Cargo, dto.IdProfesor, dto.IdAsignacion); //Que va aca?
+            profesorCurso.SetCursoId(dto.IdCurso);
+            profesorCurso.SetProfesorId(dto.IdProfesor);
+            return await profesorCursoRepository.Update(profesorCurso);
+        }*/
+        public async Task<bool> UpdateByCursoProfesor(ProfesorCursoDTO dto)
+        {
+            var profesorCursoRepository = new ProfesorCursoRepository();
+
+            // Buscar la asignación existente por IdCurso e IdProfesor
+            var criterios = new ProfesorCursoCriteria { IdCurso = dto.IdCurso, IdProfesor = dto.IdProfesor };
+            var existentes = await profesorCursoRepository.FindByCriteria(criterios);
+            var existente = existentes?.FirstOrDefault();
+
+            if (existente == null)
+                return false;
+
+            existente.Cargo = dto.Cargo;
+            // Si quieres permitir cambiar el profesor o curso, puedes actualizar los IDs aquí
+
+            return await profesorCursoRepository.Update(existente);
         }
+
     }
 }

@@ -9,5 +9,6 @@ namespace DTOs
     public class PersonaCriteriaDTO
     {
         public string Texto { get; set; } = string.Empty;
+        public string TipoPersona { get; set; }
     }
 }

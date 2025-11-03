@@ -12,4 +12,5 @@
         public bool CambiaClave { get; set; }
         public int IdPersona { get; set; }
     }
+
 }

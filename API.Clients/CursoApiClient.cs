@@ -1,10 +1,10 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using DTOs;
 using System.Threading.Tasks;
 using System;
 using System.Net;
 using System.Net.Http;
-using DTOs;
 
 
 namespace API.Cursos
@@ -73,13 +73,18 @@ namespace API.Cursos
             }
         }
 
-        public async static Task AddAsync(CursoDTO curso)
+        public static async Task<CursoDTO> AddAsync(CursoDTO curso)
         {
             try
             {
                 HttpResponseMessage response = await client.PostAsJsonAsync("cursos", curso);
 
-                if (!response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    var cursoCreado = await response.Content.ReadFromJsonAsync<CursoDTO>();
+                    return cursoCreado;
+                }
+                else
                 {
                     string errorContent = await response.Content.ReadAsStringAsync();
                     throw new Exception($"Error al crear curso. Status: {response.StatusCode}, Detalle: {errorContent}");
@@ -139,5 +144,28 @@ namespace API.Cursos
                 throw new Exception($"Timeout al actualizar curso con Id {curso.IdCurso}: {ex.Message}", ex);
             }
         }
+        public static async Task BajarCupoAsync(CursoDTO curso)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync($"cursos/bajarCupo/{curso.IdCurso}", curso);
+
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error al bajar cupo del curso con Id {curso.IdCurso}. Status: {response.StatusCode}, Detalle: {errorContent}");
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error de conexión al actualizar curso con Id {curso.IdCurso}: {ex.Message}", ex);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new Exception($"Timeout al actualizar curso con Id {curso.IdCurso}: {ex.Message}", ex);
+            }
+        }
+
     }
 }

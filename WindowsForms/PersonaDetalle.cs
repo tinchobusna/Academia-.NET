@@ -119,7 +119,7 @@ namespace WindowsFormsCurso
             this.planDropDown.DisplayMember = "Descripcion";
             this.planDropDown.ValueMember = "IdPlan";
 
-            this.tipoPersonaDropDown.Items.Add("Docente");
+            this.tipoPersonaDropDown.Items.Add("Profesor");
             this.tipoPersonaDropDown.Items.Add("Alumno");
             this.tipoPersonaDropDown.SelectedItem = "Alumno";
 

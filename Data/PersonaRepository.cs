@@ -1,6 +1,6 @@
 ﻿using Domain.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Data
 {
@@ -11,80 +11,66 @@ namespace Data
             return new TPIContext();
         }
 
-        public void Add(Persona persona)
+        public async Task Add(Persona persona)
         {
-            using var context = CreateContext();
-            context.Personas.Add(persona);
-            context.SaveChanges();
+            await using var context = CreateContext();
+            await context.Personas.AddAsync(persona);
+            await context.SaveChangesAsync();
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            using var context = CreateContext();
-            var persona = context.Personas.Find(id);
+            await using var context = CreateContext();
+            var persona = await context.Personas.FindAsync(id);
             if (persona != null)
             {
                 context.Personas.Remove(persona);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public Persona? Get(int id)
+        public async Task<Persona?> Get(int id)
         {
-            using var context = CreateContext();
-            return context.Personas
+            await using var context = CreateContext();
+            return await context.Personas
                 .Include(p => p.Plan)
-                .FirstOrDefault(p => p.IdPersona == id);
+                .FirstOrDefaultAsync(p => p.IdPersona == id);
         }
 
-        public IEnumerable<Persona> GetAll()
+        public async Task<IEnumerable<Persona>> GetAll()
         {
-            using var context = CreateContext();
-            return context.Personas
+            await using var context = CreateContext();
+            return await context.Personas
                 .Include(p => p.Plan)
-                .ToList();
+                .ToListAsync();
         }
 
-        public bool Update(Persona persona)
+        public async Task<bool> Update(Persona persona)
         {
-            using var context = CreateContext();
-            var existingPersona = context.Personas.Find(persona.IdPersona);
+            await using var context = CreateContext();
+            var existingPersona = await context.Personas.FindAsync(persona.IdPersona);
             if (existingPersona != null)
             {
                 existingPersona.IdPersona = persona.IdPersona;
-                existingPersona.Apellido = persona.Apellido;
                 existingPersona.Direccion = persona.Direccion;
-                existingPersona.Email = persona.Email;
                 existingPersona.FechaNacimiento = persona.FechaNacimiento;
                 existingPersona.SetPlanId(persona.IdPlan);
                 existingPersona.Legajo = persona.Legajo;
                 existingPersona.Telefono = persona.Telefono;
                 existingPersona.TipoPersona = persona.TipoPersona;
 
-
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public bool EmailExists(string email, int? excludeId = null)
-        {
-            using var context = CreateContext();
-            var query = context.Personas.Where(u => u.Email.ToLower() == email.ToLower());
-            if (excludeId.HasValue)
-            {
-                query = query.Where(u => u.IdPersona != excludeId.Value);
-            }
-            return query.Any();
-        }
-
-        public IEnumerable<Persona> GetByCriteria(PersonaCriteria criteria)
+        public async Task<IEnumerable<Persona>> GetByCriteria(PersonaCriteria criteria)
         {
             const string sql = @"
-                SELECT  p.IdPersona, p.Apellido, p.Direccion, p.Email, p.FechaNacimiento, p.IdPlan, p.Legajo, p.Telefono, p.TipoPersona, plan.descripcion, plan.IdEspecialidad
+                SELECT  p.IdPersona, p.Direccion, p.FechaNacimiento, p.IdPlan, p.Legajo, p.Telefono, p.TipoPersona, plan.descripcion, plan.IdEspecialidad
                 FROM Personas p
                 INNER JOIN Planes p ON m.IdPlan = p.IdPlan
                 WHERE p.Apellido LIKE @SearchTerm 
@@ -97,41 +83,36 @@ namespace Data
             string connectionString = new TPIContext().Database.GetConnectionString();
             string searchPattern = $"%{criteria.Texto}%";
 
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand(sql, connection);
+            await using var connection = new SqlConnection(connectionString);
+            await using var command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SearchTerm", searchPattern);
 
-            connection.Open();
-            using var reader = command.ExecuteReader();
+            await connection.OpenAsync();
+            await using var reader = await command.ExecuteReaderAsync();
 
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 var persona = new Persona(
                     reader.GetInt32(0),    // IdPersona
-                    reader.GetString(1),   // Apellido
-                    reader.GetString(2),   // Direccion
-                    reader.GetString(3),   // Email
-                    reader.GetDateTime(4),   // FechaNacimiento
-                    reader.GetInt32(6),    // Legajo
-                    reader.GetString(7),    // Telefono
-                    reader.GetString(8)    // TipoPErsonas
+                    reader.GetString(1),   // Direccion
+                    reader.GetDateTime(2),   // FechaNacimiento
+                    reader.GetInt32(4),    // Legajo
+                    reader.GetString(5),    // Telefono
+                    reader.GetString(6)    // TipoPErsonas
                 );
-
 
                 // Crear y asignar el Plan
                 var plan = new Plan(
-                    reader.GetInt32(5),    //IdPlan 
-                    reader.GetString(9)  // Descripcion
+                    reader.GetInt32(3),    //IdPlan 
+                    reader.GetString(7)  // Descripcion
                    );
                 plan.SetEspecialidadId(reader.GetInt32(10));
 
-                //materia.SetMateria(materia);
                 personas.Add(persona);
             }
 
             return personas;
         }
-
     }
 }

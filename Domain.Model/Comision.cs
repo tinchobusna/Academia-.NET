@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Model
 {
+
     public class Comision
     {
+
+
         public int IdComision { get; set; }
         public int AnioEspecialidad { get; set; }
         public string Descripcion { get; set; }
@@ -17,6 +19,8 @@ namespace Domain.Model
 
         private int _planId;
         private Plan? _plan;
+
+        public Comision() { }
 
         public int IdPlan
         {
@@ -32,7 +36,7 @@ namespace Domain.Model
                 _plan = value;
                 if (value != null && _planId != value.IdPlan)
                 {
-                    _planId = value.IdPlan; // Sincronizar automáticamente
+                    _planId = value.IdPlan;
                 }
             }
         }
@@ -51,10 +55,9 @@ namespace Domain.Model
 
             _planId = idPlan;
 
-            // Solo invalidar si hay inconsistencia
             if (_plan != null && _plan.IdPlan != idPlan)
             {
-                _plan = null; // Invalidar navigation property
+                _plan = null;
             }
         }
 

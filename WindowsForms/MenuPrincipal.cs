@@ -99,7 +99,7 @@ namespace WindowsForms
                 this.funcionaliadprofesoresToolStripMenuItem.Visible = false;
                 this.listasToolStripMenuItem.Visible = false;
             }
-            else if (this.modo == "Docente")
+            else if (this.modo == "Profesor")
             {
                 this.funcionalidadAlumnosToolStripMenuItem.Visible = false;
                 this.listasToolStripMenuItem.Visible = false;

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Numerics;
 
 namespace Domain.Model
 {
     public class Persona
     {
         public int IdPersona { get; set; }
-        public string Apellido { get; set; }
         public string Direccion { get; set; }
-        public string Email { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public int Legajo { get; set; }
         public string Telefono { get; set; }
@@ -36,18 +33,16 @@ namespace Domain.Model
                 _plan = value;
                 if (value != null && _planId != value.IdPlan)
                 {
-                    _planId = value.IdPlan; // Sincronizar automáticamente
+                    _planId = value.IdPlan;
                 }
             }
         }
 
 
-        public Persona(int idPersona, string apellido, string direccion, string email, DateTime fechaNacimiento, int legajo, string telefono, string tipoPersona)
+        public Persona(int idPersona, string direccion, DateTime fechaNacimiento, int legajo, string telefono, string tipoPersona)
         {
             IdPersona = idPersona;
-            Apellido = apellido;
             Direccion = direccion;
-            Email = email;
             FechaNacimiento = fechaNacimiento;
             Legajo = legajo;
             Telefono = telefono;
@@ -61,10 +56,9 @@ namespace Domain.Model
 
             _planId = idPlan;
 
-            // Solo invalidar si hay inconsistencia
             if (_plan != null && _plan.IdPlan != idPlan)
             {
-                _plan = null; // Invalidar navigation property
+                _plan = null;
             }
         }
 

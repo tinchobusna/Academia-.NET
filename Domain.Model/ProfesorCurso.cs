@@ -6,6 +6,7 @@
         public string Cargo { get; set; }
 
         // Atributos para la relacion con curso
+
         private int _cursoId;
         private Curso? _curso;
 
@@ -23,40 +24,43 @@
                 _curso = value;
                 if (value != null && _cursoId != value.IdCurso)
                 {
-                    _cursoId = value.IdCurso; // Sincronizar automáticamente
+                    _cursoId = value.IdCurso;
                 }
             }
         }
 
 
         // Atributos para la relacion con Persona ("Profesor")
-        private int _personaId;
-        private Persona? _persona;
 
-        public int IdPersona
+        private int _profesorId;
+        private Persona? _profesor;
+
+        public int IdProfesor
         {
-            get => _persona?.IdPersona ?? _personaId;
-            private set => _personaId = value;
+            get => _profesor?.IdPersona ?? _profesorId;
+            private set => _profesorId = value;
         }
 
-        public Persona? Persona
+        public Persona? Profesor
         {
-            get => _persona;
+            get => _profesor;
             private set
             {
-                _persona = value;
-                if (value != null && _personaId != value.IdPersona)
+                _profesor = value;
+                if (value != null && _profesorId != value.IdPersona)
                 {
-                    _personaId = value.IdPersona; // Sincronizar automáticamente
+                    _profesorId = value.IdPersona;
                 }
             }
         }
+
+        public ProfesorCurso() { }
 
         public ProfesorCurso(string cargo, int idCurso, int idPersona)
         {
             Cargo = cargo;
             IdCurso = idCurso;
-            IdPersona = idPersona;
+            IdProfesor = idPersona;
         }
 
         public void SetCursoId(int idCurso)
@@ -66,10 +70,9 @@
 
             _cursoId = idCurso;
 
-            // Solo invalidar si hay inconsistencia
             if (_curso != null && _curso.IdCurso != idCurso)
             {
-                _curso = null; // Invalidar navigation property
+                _curso = null;
             }
         }
 
@@ -80,27 +83,27 @@
             _cursoId = curso.IdCurso;
         }
 
-        public void SetPersonaId(int idPersona)
+        public void SetProfesorId(int idProfesor)
         {
-            if (idPersona <= 0)
-                throw new ArgumentException("El idPersona debe ser mayor que 0.", nameof(idPersona));
+            if (idProfesor <= 0)
+                throw new ArgumentException("El id del Profesor debe ser mayor que 0.", nameof(idProfesor));
 
-            _personaId = idPersona;
+            _profesorId = idProfesor;
 
-            // Solo invalidar si hay inconsistencia
-            if (_persona != null && _persona.IdPersona != idPersona)
+            if (_profesor != null && _profesor.IdPersona != idProfesor)
             {
-                _persona = null; // Invalidar navigation property
+                _profesor = null;
             }
         }
 
-        public void SetPersona(Persona persona)
+        public void SetProfesor(Persona profesor)
         {
-            ArgumentNullException.ThrowIfNull(persona);
-            _persona = persona;
-            _personaId = persona.IdPersona;
+            ArgumentNullException.ThrowIfNull(profesor);
+            _profesor = profesor;
+            _profesorId = profesor.IdPersona;
         }
     }
 
 
 }
+

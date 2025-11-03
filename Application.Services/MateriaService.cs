@@ -1,35 +1,35 @@
-﻿using Domain.Model;
-using Data;
+﻿using Data;
+using Domain.Model;
 using DTOs;
 
 namespace Application.Services
 {
     public class MateriaService
     {
-        public MateriaDTO Add(MateriaDTO dto)
+        public async Task<MateriaDTO> Add(MateriaDTO dto)
         {
             var materiaRepository = new MateriaRepository();
 
             Materia materia = new Materia(0, dto.Descripcion, dto.HsSemanales, dto.HsTotales);
             materia.SetPlanId(dto.IdPlan);
 
-            materiaRepository.Add(materia);
+            await materiaRepository.Add(materia);
 
             dto.IdMateria = materia.IdMateria;
 
             return dto;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             var materiaRepository = new MateriaRepository();
-            return materiaRepository.Delete(id);
+            return await materiaRepository.Delete(id);
         }
 
-        public MateriaDTO Get(int id)
+        public async Task<MateriaDTO?> Get(int id)
         {
             var materiaRepository = new MateriaRepository();
-            Materia? materia = materiaRepository.Get(id);
+            Materia? materia = await materiaRepository.Get(id);
 
             if (materia == null)
                 return null;
@@ -44,10 +44,10 @@ namespace Application.Services
             };
         }
 
-        public IEnumerable<MateriaDTO> GetAll()
+        public async Task<IEnumerable<MateriaDTO>> GetAll()
         {
             var materiaRepository = new MateriaRepository();
-            var materias = materiaRepository.GetAll();
+            var materias = await materiaRepository.GetAll();
 
             return materias.Select(materia => new MateriaDTO
             {
@@ -59,27 +59,24 @@ namespace Application.Services
             }).ToList();
         }
 
-        public bool Update(MateriaDTO dto)
+        public async Task<bool> Update(MateriaDTO dto)
         {
             var materiaRepository = new MateriaRepository();
 
             Materia materia = new Materia(dto.IdMateria, dto.Descripcion, dto.HsSemanales, dto.HsTotales);
             materia.SetPlanId(dto.IdPlan);
 
-            return materiaRepository.Update(materia);
+            return await materiaRepository.Update(materia);
         }
 
-        public IEnumerable<MateriaDTO> GetByCriteria(MateriaCriteriaDTO criteriaDTO)
+        public async Task<IEnumerable<MateriaDTO>> GetByCriteria(MateriaCriteriaDTO criteriaDTO)
         {
             var materiaRepository = new MateriaRepository();
 
-            // Mapear DTO a Domain Model
             var criteria = new MateriaCriteria(criteriaDTO.Texto);
 
-            // Llamar al repositorio
-            var materias = materiaRepository.GetByCriteria(criteria);
+            var materias = await materiaRepository.GetByCriteria(criteria);
 
-            // Mapear Domain Model a DTO
             return materias.Select(m => new MateriaDTO
             {
                 IdMateria = m.IdMateria,
@@ -89,6 +86,6 @@ namespace Application.Services
                 IdPlan = m.IdPlan
             });
         }
-
     }
 }
+

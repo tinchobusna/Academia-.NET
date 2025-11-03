@@ -6,30 +6,30 @@ namespace Application.Services
 {
     public class ComisionService
     {
-        public ComisionDTO Add(ComisionDTO dto)
+        public async Task<ComisionDTO> Add(ComisionDTO dto)
         {
             var comisionRepository = new ComisionRepository();
 
             Comision comision = new Comision(0, dto.AnioEspecialidad, dto.Descripcion);
             comision.SetPlanId(dto.IdPlan);
 
-            comisionRepository.Add(comision);
+            await comisionRepository.Add(comision);
 
             dto.IdComision = comision.IdComision;
 
             return dto;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             var comisionRepository = new ComisionRepository();
-            return comisionRepository.Delete(id);
+            return await comisionRepository.Delete(id);
         }
 
-        public ComisionDTO Get(int id)
+        public async Task<ComisionDTO> Get(int id)
         {
             var comisionRepository = new ComisionRepository();
-            Comision? comision = comisionRepository.Get(id);
+            Comision? comision = await comisionRepository.Get(id);
 
             if (comision == null)
                 return null;
@@ -43,10 +43,10 @@ namespace Application.Services
             };
         }
 
-        public IEnumerable<ComisionDTO> GetAll()
+        public async Task<IEnumerable<ComisionDTO>> GetAll()
         {
             var comisionRepository = new ComisionRepository();
-            var comisiones = comisionRepository.GetAll();
+            var comisiones = await comisionRepository.GetAll();
 
             return comisiones.Select(comision => new ComisionDTO
             {
@@ -57,26 +57,23 @@ namespace Application.Services
             }).ToList();
         }
 
-        public bool Update(ComisionDTO dto)
+        public async Task<bool> Update(ComisionDTO dto)
         {
             var comisionRepository = new ComisionRepository();
 
             Comision comision = new Comision(dto.IdComision, dto.AnioEspecialidad, dto.Descripcion);
             comision.SetPlanId(dto.IdPlan);
-            return comisionRepository.Update(comision);
+            return await comisionRepository.Update(comision);
         }
 
-        public IEnumerable<ComisionDTO> GetByCriteria(ComisionCriteriaDTO criteriaDTO)
+        public async Task<IEnumerable<ComisionDTO>> GetByCriteria(ComisionCriteriaDTO criteriaDTO)
         {
             var comisionRepository = new ComisionRepository();
 
-            // Mapear DTO a Domain Model
             var criteria = new ComisionCriteria(criteriaDTO.Texto);
 
-            // Llamar al repositorio
-            var comisiones = comisionRepository.GetByCriteria(criteria);
+            var comisiones = await comisionRepository.GetByCriteria(criteria);
 
-            // Mapear Domain Model a DTO
             return comisiones.Select(c => new ComisionDTO
             {
                 IdComision = c.IdComision,
@@ -85,6 +82,5 @@ namespace Application.Services
                 IdPlan = c.IdPlan,
             });
         }
-
     }
 }

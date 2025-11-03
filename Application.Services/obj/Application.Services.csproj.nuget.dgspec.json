@@ -109,6 +109,9 @@
             "projectReferences": {
               "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\Domain.Model.csproj": {
                 "projectPath": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\Domain.Model\\Domain.Model.csproj"
+              },
+              "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\DTOs.csproj": {
+                "projectPath": "C:\\Users\\marti\\OneDrive\\Escritorio\\Academia-.NET\\DTOs\\DTOs.csproj"
               }
             }
           }
