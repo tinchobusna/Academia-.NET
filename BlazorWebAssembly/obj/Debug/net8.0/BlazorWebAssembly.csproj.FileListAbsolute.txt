@@ -1024,9 +1024,6 @@ C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\gxz2mgc0ta-tptq2av103.gz
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\ukp8cb27mf-lfu7j35m59.gz
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\jijsh4mzkr-oyz0vx2fzb.gz
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\7rjygah7pu-iwpl2z24ue.gz
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\20k1jvogj1-nusnsc8lr0.gz
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\vke2gz502p-1j1fzx32og.gz
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\staticwebassets.development.json
@@ -1037,3 +1034,6 @@ C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\refint\BlazorWebAssembly.dll
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.pdb
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\ref\BlazorWebAssembly.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\7rjygah7pu-e65yv1oudu.gz
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\20k1jvogj1-5a8til9vwt.gz
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\compressed\vke2gz502p-oqcvw35mg8.gz

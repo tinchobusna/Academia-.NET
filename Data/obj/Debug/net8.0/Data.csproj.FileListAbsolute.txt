@@ -26,3 +26,5 @@ C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Data\obj\Debug\net8.0\refint\Da
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Data\obj\Debug\net8.0\Data.pdb
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Data\obj\Debug\net8.0\Data.genruntimeconfig.cache
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Data\obj\Debug\net8.0\ref\Data.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Data\bin\Debug\net8.0\DTOs.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Data\bin\Debug\net8.0\DTOs.pdb
