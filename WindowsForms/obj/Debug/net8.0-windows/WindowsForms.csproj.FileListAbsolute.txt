@@ -121,3 +121,12 @@ C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-w
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.ComisionDetalle.resources
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.MateriaDetalle.resources
 C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.MateriasLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.EspecialidadDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.EspecialidadesLista.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.InscribirseACurso.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.NotaDetalle.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.PonerNotas.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.Reportes.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.VerNotas.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsFormsCurso.MenuPrincipal.resources
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\WindowsForms\obj\Debug\net8.0-windows\WindowsForms.MenuPrincipal.resources

@@ -38,7 +38,7 @@
             // 
             // modificarButton
             // 
-            modificarButton.Location = new Point(588, 294);
+            modificarButton.Location = new Point(587, 12);
             modificarButton.Margin = new Padding(2);
             modificarButton.Name = "modificarButton";
             modificarButton.Size = new Size(80, 22);
@@ -49,7 +49,7 @@
             // 
             // eliminarButton
             // 
-            eliminarButton.Location = new Point(496, 294);
+            eliminarButton.Location = new Point(495, 12);
             eliminarButton.Margin = new Padding(2);
             eliminarButton.Name = "eliminarButton";
             eliminarButton.Size = new Size(80, 22);
@@ -60,7 +60,7 @@
             // 
             // agregarButton
             // 
-            agregarButton.Location = new Point(681, 294);
+            agregarButton.Location = new Point(680, 12);
             agregarButton.Margin = new Padding(2);
             agregarButton.Name = "agregarButton";
             agregarButton.Size = new Size(80, 22);
@@ -73,7 +73,7 @@
             // 
             comisionesDataGridView.AllowUserToOrderColumns = true;
             comisionesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            comisionesDataGridView.Location = new Point(11, 11);
+            comisionesDataGridView.Location = new Point(11, 49);
             comisionesDataGridView.Margin = new Padding(2);
             comisionesDataGridView.MultiSelect = false;
             comisionesDataGridView.Name = "comisionesDataGridView";
@@ -81,12 +81,12 @@
             comisionesDataGridView.RowHeadersWidth = 82;
             comisionesDataGridView.RowTemplate.Height = 41;
             comisionesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            comisionesDataGridView.Size = new Size(751, 270);
+            comisionesDataGridView.Size = new Size(751, 287);
             comisionesDataGridView.TabIndex = 4;
             // 
             // refrescarButton
             // 
-            refrescarButton.Location = new Point(401, 294);
+            refrescarButton.Location = new Point(400, 12);
             refrescarButton.Name = "refrescarButton";
             refrescarButton.Size = new Size(80, 23);
             refrescarButton.TabIndex = 10;
@@ -98,7 +98,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(779, 326);
+            ClientSize = new Size(779, 359);
             Controls.Add(refrescarButton);
             Controls.Add(modificarButton);
             Controls.Add(eliminarButton);

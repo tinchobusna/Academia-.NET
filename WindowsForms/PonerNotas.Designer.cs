@@ -39,18 +39,17 @@
             // cursoLabel
             // 
             cursoLabel.AutoSize = true;
-            cursoLabel.Location = new Point(12, 27);
+            cursoLabel.Location = new Point(10, 20);
             cursoLabel.Name = "cursoLabel";
-            cursoLabel.Size = new Size(46, 20);
+            cursoLabel.Size = new Size(38, 15);
             cursoLabel.TabIndex = 11;
             cursoLabel.Text = "Curso";
             // 
             // buttonPonerNota
             // 
-            buttonPonerNota.Location = new Point(12, 408);
-            buttonPonerNota.Margin = new Padding(3, 4, 3, 4);
+            buttonPonerNota.Location = new Point(512, 16);
             buttonPonerNota.Name = "buttonPonerNota";
-            buttonPonerNota.Size = new Size(131, 31);
+            buttonPonerNota.Size = new Size(115, 23);
             buttonPonerNota.TabIndex = 10;
             buttonPonerNota.Text = "Poner Nota";
             buttonPonerNota.UseVisualStyleBackColor = true;
@@ -58,19 +57,17 @@
             // dataGridViewAlumnos
             // 
             dataGridViewAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAlumnos.Location = new Point(12, 67);
-            dataGridViewAlumnos.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewAlumnos.Location = new Point(10, 50);
             dataGridViewAlumnos.Name = "dataGridViewAlumnos";
             dataGridViewAlumnos.RowHeadersWidth = 51;
-            dataGridViewAlumnos.Size = new Size(705, 333);
+            dataGridViewAlumnos.Size = new Size(617, 250);
             dataGridViewAlumnos.TabIndex = 9;
             // 
             // buttonFiltrar
             // 
-            buttonFiltrar.Location = new Point(314, 24);
-            buttonFiltrar.Margin = new Padding(3, 4, 3, 4);
+            buttonFiltrar.Location = new Point(275, 18);
             buttonFiltrar.Name = "buttonFiltrar";
-            buttonFiltrar.Size = new Size(83, 28);
+            buttonFiltrar.Size = new Size(73, 21);
             buttonFiltrar.TabIndex = 8;
             buttonFiltrar.Text = "Filtrar";
             buttonFiltrar.UseVisualStyleBackColor = true;
@@ -78,22 +75,22 @@
             // comboBoxCursos
             // 
             comboBoxCursos.FormattingEnabled = true;
-            comboBoxCursos.Location = new Point(64, 24);
-            comboBoxCursos.Margin = new Padding(3, 4, 3, 4);
+            comboBoxCursos.Location = new Point(56, 18);
             comboBoxCursos.Name = "comboBoxCursos";
-            comboBoxCursos.Size = new Size(244, 28);
+            comboBoxCursos.Size = new Size(214, 23);
             comboBoxCursos.TabIndex = 7;
             // 
             // PonerNotas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(639, 314);
             Controls.Add(cursoLabel);
             Controls.Add(buttonPonerNota);
             Controls.Add(dataGridViewAlumnos);
             Controls.Add(buttonFiltrar);
             Controls.Add(comboBoxCursos);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "PonerNotas";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridViewAlumnos).EndInit();

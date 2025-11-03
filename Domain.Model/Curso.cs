@@ -4,6 +4,7 @@
     {
 
         public int IdCurso { get; set; }
+        public string Descripcion { get; set; }
         public int AnioCalendario { get; set; }
         public int Cupo { get; set; }
 
@@ -11,6 +12,8 @@
 
         private int _materiaId;
         private Materia? _materia;
+
+        public Curso() { }
 
         public int IdMateria
         {
@@ -26,7 +29,7 @@
                 _materia = value;
                 if (value != null && _materiaId != value.IdMateria)
                 {
-                    _materiaId = value.IdMateria; // Sincronizar automáticamente
+                    _materiaId = value.IdMateria;
                 }
             }
         }
@@ -51,17 +54,17 @@
                 _comision = value;
                 if (value != null && _comisionId != value.IdComision)
                 {
-                    _comisionId = value.IdComision; // Sincronizar automáticamente
+                    _comisionId = value.IdComision;
                 }
             }
         }
 
-        public Curso(int idCurso, int idMateria, int idComision, int anioCalendario, int cupo)
+        public Curso(int idCurso, int idMateria, int idComision, string descripcion, int anioCalendario, int cupo)
         {
-
             IdCurso = idCurso;
             IdMateria = idMateria;
             IdComision = idComision;
+            Descripcion = descripcion;
             AnioCalendario = anioCalendario;
             Cupo = cupo;
         }
@@ -76,7 +79,7 @@
             // Solo invalidar si hay inconsistencia
             if (_comision != null && _comision.IdComision != idComision)
             {
-                _comision = null; // Invalidar navigation property
+                _comision = null;
             }
         }
 
@@ -94,10 +97,9 @@
 
             _materiaId = idMateria;
 
-            // Solo invalidar si hay inconsistencia
             if (_materia != null && _materia.IdMateria != idMateria)
             {
-                _materia = null; // Invalidar navigation property
+                _materia = null;
             }
         }
 

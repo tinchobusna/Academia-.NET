@@ -1,0 +1,145 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DTOs;
+
+namespace WindowsForms
+{
+    public partial class MenuPrincipal : Form
+    {
+        private UsuarioDTO usuario;
+
+        public UsuarioDTO Usuario
+        {
+            get { return usuario; }
+            set
+            {
+                usuario = value;
+            }
+        }
+
+        private string modo;
+
+        public string Modo
+        {
+            get { return modo; }
+            set
+            {
+                modo = value;
+            }
+        }
+
+        public MenuPrincipal()
+        {
+            InitializeComponent();
+            this.IsMdiContainer = true;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void cursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CursosLista form = new CursosLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsuariosLista form = new UsuariosLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void comisionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComisionesLista form = new ComisionesLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MateriasLista form = new MateriasLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void planToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlanesLista form = new PlanesLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void especialidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EspecialidadesLista form = new EspecialidadesLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void inscribirseACursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InscribirseACurso form = new InscribirseACurso();
+            form.Usuario = this.usuario;
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void Menu_load(object sender, EventArgs e)
+        {
+            if (this.modo == "Alumno")
+            {
+                this.funcionaliadprofesoresToolStripMenuItem.Visible = false;
+                this.listasToolStripMenuItem.Visible = false;
+            }
+            else if (this.modo == "Docente")
+            {
+                this.funcionalidadAlumnosToolStripMenuItem.Visible = false;
+                this.listasToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                this.funcionalidadAlumnosToolStripMenuItem.Visible = false;
+                this.funcionaliadprofesoresToolStripMenuItem.Visible = false;
+            }
+        }
+
+        private void ponerNotasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PonerNotas form = new PonerNotas();
+            form.Usuario = this.usuario;
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reportes form = new Reportes();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void personasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PersonasLista form = new PersonasLista();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void verNotasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VerNotas form = new VerNotas();
+            form.Usuario = this.usuario;
+            form.MdiParent = this;
+            form.Show();
+        }
+    }
+}
+

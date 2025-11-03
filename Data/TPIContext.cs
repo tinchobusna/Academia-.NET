@@ -17,7 +17,6 @@ namespace Data
         {
         }
 
-        // Constructor sin parámetros para que EF pueda instanciar en tiempo de diseño
 
 
         public DbSet<Curso> Cursos { get; set; }
@@ -28,6 +27,8 @@ namespace Data
         public DbSet<Especialidad> Especialidades { get; set; }
         public DbSet<Plan> Planes { get; set; }
         public DbSet<AlumnoInscripcion> AlumnosInscripciones { get; set; }
+        public DbSet<ProfesorCurso> ProfesoresCursos { get; set; }
+
 
         public TPIContext()
         {
@@ -69,12 +70,6 @@ namespace Data
                     .HasMaxLength(360);
 
 
-                entity.HasData(new
-                {
-                    IdEspecialidad = 1,
-                    Descripcion = "Especialidad"
-                });
-
             });
 
             modelBuilder.Entity<Plan>(entity =>
@@ -105,12 +100,6 @@ namespace Data
                     .HasForeignKey(e => e.IdEspecialidad)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasData(new
-                {
-                    IdPlan = 1,
-                    Descripcion = "Plan básico",
-                    IdEspecialidad = 1
-                });
 
             });
 
@@ -124,15 +113,7 @@ namespace Data
                 entity.HasIndex(e => e.IdPersona)
                    .IsUnique();
 
-                entity.Property(e => e.Apellido)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
                 entity.Property(e => e.Direccion)
-                   .IsRequired()
-                   .HasMaxLength(30);
-
-                entity.Property(e => e.Email)
                    .IsRequired()
                    .HasMaxLength(30);
 
@@ -170,22 +151,6 @@ namespace Data
                     .WithMany()
                     .HasForeignKey(e => e.IdPlan)
                     .OnDelete(DeleteBehavior.Cascade);
-
-                // Datos iniciales
-
-                entity.HasData(new
-                {
-                    IdPersona = 1,
-                    Apellido = "Admin",
-                    Direccion = "Admin 123",
-                    Email = "admin@gmail.com",
-                    FechaNacimiento = new DateTime(2004, 3, 3),
-                    Legajo = 1234,
-                    Telefono = "3419999999",
-                    TipoPersona = "Administrador",
-                    IdPlan = 1
-                }
-                );
 
             });
 
@@ -236,21 +201,6 @@ namespace Data
                     .HasForeignKey(e => e.IdPersona)
                     .OnDelete(DeleteBehavior.Cascade);
 
-                // Datos iniciales
-
-                entity.HasData(new Usuario
-                {
-                    IdUsuario = 1,
-                    Apellido = "Admin",
-                    Nombre = "Admin",
-                    Clave = "123",
-                    Email = "admin@gmail.com",
-                    Habilitado = true,
-                    NombreUsuario = "admin",
-                    IdPersona = 1
-                }
-                );
-
 
             });
 
@@ -264,6 +214,9 @@ namespace Data
                     .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.AnioCalendario)
+                    .IsRequired();
+
+                entity.Property(e => e.Descripcion)
                     .IsRequired();
 
                 entity.Property(e => e.Cupo)
@@ -296,6 +249,8 @@ namespace Data
                     .WithMany()
                     .HasForeignKey(e => e.IdComision)
                     .OnDelete(DeleteBehavior.Cascade);
+
+
             });
 
             modelBuilder.Entity<Materia>(entity =>
@@ -372,7 +327,6 @@ namespace Data
 
             });
 
-
             modelBuilder.Entity<AlumnoInscripcion>(entity =>
             {
                 entity.HasKey(e => e.IdInscripcion);
@@ -421,6 +375,45 @@ namespace Data
 
 
             });
+
+            modelBuilder.Entity<ProfesorCurso>(entity =>
+            {
+                entity.HasKey(e => new { e.IdProfesor, e.IdCurso });
+
+
+                // Relación con Persona (Profesor)
+                entity.Property(e => e.IdProfesor)
+                    .IsRequired()
+                    .HasField("_ProfesorId");
+
+                entity.Navigation(e => e.Profesor)
+                    .HasField("_Profesor");
+
+                entity.HasOne(e => e.Profesor)
+                    .WithMany()
+                    .HasForeignKey(e => e.IdProfesor)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Relación con Curso
+                entity.Property(e => e.IdCurso)
+                    .IsRequired()
+                    .HasField("_cursoId");
+
+                entity.Navigation(e => e.Curso)
+                    .HasField("_curso");
+
+                entity.HasOne(e => e.Curso)
+                    .WithMany()
+                    .HasForeignKey(e => e.IdCurso)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+
+
+
+
+            });
+
+
 
         }
     }

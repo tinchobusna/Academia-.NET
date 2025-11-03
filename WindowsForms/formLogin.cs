@@ -7,36 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using API.Personas;
+using API.Usuarios;
+using DTOs;
 
 namespace WindowsForms
 {
     public partial class formLogin : Form
     {
+        private UsuarioDTO usuario;
+        private UsuarioDTO usuarioBD;
         public formLogin()
         {
             InitializeComponent();
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
+
+        private async void iniciarSesionButton_Click(object sender, EventArgs e)
         {
 
-            if (this.txtUsuario.Text == "Admin" && this.txtPass.Text == "admin")
+
+            string email = usuarioTextBox.Text;
+            string clave = contraseñaTextBox.Text;
+
+            usuarioBD = await UsuarioApiClient.Login(email, clave);
+
+            if (usuarioBD != null)
             {
-                this.DialogResult = DialogResult.OK;
+                var persona = new PersonaDTO();
+
+                persona = await PersonaApiClient.GetAsync(usuarioBD.IdPersona);
+
+                MenuPrincipal form = new MenuPrincipal();
+                form.Usuario = usuarioBD;
+                form.Modo = persona.TipoPersona;
+                form.Show();
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("Usuario y/o contraseña incorrectos", "Login",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuario o contraseña incorrectos");
             }
+
         }
 
-        private void lnkOlvidaPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            MessageBox.Show("Es Ud. un usuario muy descuidado, haga memoria",
-                            "Olvidé mi contraseña",
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
 
     }
 }

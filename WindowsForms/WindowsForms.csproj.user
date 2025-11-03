@@ -13,7 +13,16 @@
     <Compile Update="CursosLista.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="EspecialidadDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EspecialidadesLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="formLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="InscribirseACurso.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MateriaDetalle.cs">
@@ -22,7 +31,10 @@
     <Compile Update="MateriasLista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="PaginaMain.cs">
+    <Compile Update="NotaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="PersonaDetalle.cs">
@@ -37,13 +49,19 @@
     <Compile Update="PlanesLista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Registrarse.cs">
+    <Compile Update="PonerNotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reportes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UsuarioDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UsuariosLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VerNotas.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

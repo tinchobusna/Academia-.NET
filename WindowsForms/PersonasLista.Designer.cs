@@ -38,10 +38,9 @@
             // 
             // refrescarButton
             // 
-            refrescarButton.Location = new Point(458, 392);
-            refrescarButton.Margin = new Padding(3, 4, 3, 4);
+            refrescarButton.Location = new Point(402, 11);
             refrescarButton.Name = "refrescarButton";
-            refrescarButton.Size = new Size(91, 31);
+            refrescarButton.Size = new Size(80, 23);
             refrescarButton.TabIndex = 15;
             refrescarButton.Text = "Refrescar";
             refrescarButton.UseVisualStyleBackColor = true;
@@ -49,10 +48,10 @@
             // 
             // modificarButton
             // 
-            modificarButton.Location = new Point(672, 392);
-            modificarButton.Margin = new Padding(2, 3, 2, 3);
+            modificarButton.Location = new Point(589, 11);
+            modificarButton.Margin = new Padding(2, 2, 2, 2);
             modificarButton.Name = "modificarButton";
-            modificarButton.Size = new Size(91, 29);
+            modificarButton.Size = new Size(80, 22);
             modificarButton.TabIndex = 14;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
@@ -60,10 +59,10 @@
             // 
             // eliminarButton
             // 
-            eliminarButton.Location = new Point(567, 392);
-            eliminarButton.Margin = new Padding(2, 3, 2, 3);
+            eliminarButton.Location = new Point(497, 11);
+            eliminarButton.Margin = new Padding(2, 2, 2, 2);
             eliminarButton.Name = "eliminarButton";
-            eliminarButton.Size = new Size(91, 29);
+            eliminarButton.Size = new Size(80, 22);
             eliminarButton.TabIndex = 13;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
@@ -71,10 +70,10 @@
             // 
             // agregarButton
             // 
-            agregarButton.Location = new Point(778, 392);
-            agregarButton.Margin = new Padding(2, 3, 2, 3);
+            agregarButton.Location = new Point(682, 11);
+            agregarButton.Margin = new Padding(2, 2, 2, 2);
             agregarButton.Name = "agregarButton";
-            agregarButton.Size = new Size(91, 29);
+            agregarButton.Size = new Size(80, 22);
             agregarButton.TabIndex = 12;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
@@ -84,28 +83,27 @@
             // 
             personasDataGridView.AllowUserToOrderColumns = true;
             personasDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            personasDataGridView.Location = new Point(13, 15);
-            personasDataGridView.Margin = new Padding(2, 3, 2, 3);
+            personasDataGridView.Location = new Point(11, 53);
+            personasDataGridView.Margin = new Padding(2, 2, 2, 2);
             personasDataGridView.MultiSelect = false;
             personasDataGridView.Name = "personasDataGridView";
             personasDataGridView.ReadOnly = true;
             personasDataGridView.RowHeadersWidth = 82;
             personasDataGridView.RowTemplate.Height = 41;
             personasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            personasDataGridView.Size = new Size(858, 360);
+            personasDataGridView.Size = new Size(751, 270);
             personasDataGridView.TabIndex = 11;
             // 
             // PersonasLista
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(888, 436);
+            ClientSize = new Size(777, 349);
             Controls.Add(refrescarButton);
             Controls.Add(modificarButton);
             Controls.Add(eliminarButton);
             Controls.Add(agregarButton);
             Controls.Add(personasDataGridView);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "PersonasLista";
             Text = "Personas Lista";
             Load += Personas_Load;

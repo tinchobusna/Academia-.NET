@@ -35,10 +35,9 @@
             // 
             // buttonInscribirse
             // 
-            buttonInscribirse.Location = new Point(300, 372);
-            buttonInscribirse.Margin = new Padding(3, 4, 3, 4);
+            buttonInscribirse.Location = new Point(527, 12);
             buttonInscribirse.Name = "buttonInscribirse";
-            buttonInscribirse.Size = new Size(86, 31);
+            buttonInscribirse.Size = new Size(75, 23);
             buttonInscribirse.TabIndex = 3;
             buttonInscribirse.Text = "Inscribirse";
             buttonInscribirse.UseVisualStyleBackColor = true;
@@ -46,20 +45,20 @@
             // dataGridViewCursos
             // 
             dataGridViewCursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCursos.Location = new Point(12, 13);
-            dataGridViewCursos.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewCursos.Location = new Point(12, 48);
             dataGridViewCursos.Name = "dataGridViewCursos";
             dataGridViewCursos.RowHeadersWidth = 51;
-            dataGridViewCursos.Size = new Size(674, 351);
+            dataGridViewCursos.Size = new Size(590, 263);
             dataGridViewCursos.TabIndex = 2;
             // 
             // InscribirseACurso
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(713, 422);
+            ClientSize = new Size(624, 332);
             Controls.Add(buttonInscribirse);
             Controls.Add(dataGridViewCursos);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "InscribirseACurso";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridViewCursos).EndInit();

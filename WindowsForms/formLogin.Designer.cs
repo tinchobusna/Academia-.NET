@@ -1,14 +1,18 @@
-﻿namespace WindowsForms
+﻿using System.Drawing.Printing;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace WindowsForms
 {
     partial class formLogin
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,115 +27,94 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
+            usuarioLabel = new Label();
+            contraseñaLabel = new Label();
+            iniciarSesionButton = new Button();
+            usuarioTextBox = new TextBox();
+            contraseñaTextBox = new TextBox();
             label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            txtUsuario = new TextBox();
-            txtPass = new TextBox();
-            btnIngresar = new Button();
-            lnkOlvidaPass = new LinkLabel();
             SuspendLayout();
+            // 
+            // usuarioLabel
+            // 
+            usuarioLabel.AutoSize = true;
+            usuarioLabel.Location = new Point(46, 118);
+            usuarioLabel.Name = "usuarioLabel";
+            usuarioLabel.Size = new Size(47, 15);
+            usuarioLabel.TabIndex = 0;
+            usuarioLabel.Text = "Usuario";
+            // 
+            // contraseñaLabel
+            // 
+            contraseñaLabel.AutoSize = true;
+            contraseñaLabel.Location = new Point(46, 161);
+            contraseñaLabel.Name = "contraseñaLabel";
+            contraseñaLabel.Size = new Size(67, 15);
+            contraseñaLabel.TabIndex = 1;
+            contraseñaLabel.Text = "Contraseña";
+            // 
+            // iniciarSesionButton
+            // 
+            iniciarSesionButton.Location = new Point(170, 220);
+            iniciarSesionButton.Name = "iniciarSesionButton";
+            iniciarSesionButton.Size = new Size(133, 24);
+            iniciarSesionButton.TabIndex = 2;
+            iniciarSesionButton.Text = "Ingresar";
+            iniciarSesionButton.UseVisualStyleBackColor = true;
+            iniciarSesionButton.Click += iniciarSesionButton_Click;
+            // 
+            // usuarioTextBox
+            // 
+            usuarioTextBox.Location = new Point(151, 115);
+            usuarioTextBox.Name = "usuarioTextBox";
+            usuarioTextBox.Size = new Size(183, 23);
+            usuarioTextBox.TabIndex = 3;
+            // 
+            // contraseñaTextBox
+            // 
+            contraseñaTextBox.Location = new Point(151, 158);
+            contraseñaTextBox.Name = "contraseñaTextBox";
+            contraseñaTextBox.Size = new Size(183, 23);
+            contraseñaTextBox.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(257, 72);
+            label1.Location = new Point(130, 64);
             label1.Name = "label1";
-            label1.Size = new Size(229, 30);
-            label1.TabIndex = 0;
-            label1.Text = "¡Bienvenido al Sistema!\r\nPor favor digite su información de Ingreso\r\n";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(138, 135);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Nombre de Usuario:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(181, 195);
-            label3.Name = "label3";
-            label3.Size = new Size(70, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Contraseña:";
-            // 
-            // txtUsuario
-            // 
-            txtUsuario.Location = new Point(257, 132);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(229, 23);
-            txtUsuario.TabIndex = 3;
-            // 
-            // txtPass
-            // 
-            txtPass.Location = new Point(257, 192);
-            txtPass.Name = "txtPass";
-            txtPass.PasswordChar = '*';
-            txtPass.Size = new Size(229, 23);
-            txtPass.TabIndex = 4;
-            // 
-            // btnIngresar
-            // 
-            btnIngresar.Location = new Point(371, 249);
-            btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(104, 23);
-            btnIngresar.TabIndex = 5;
-            btnIngresar.Text = "Ingresar";
-            btnIngresar.UseVisualStyleBackColor = true;
-            btnIngresar.Click += btnIngresar_Click;
-            // 
-            // lnkOlvidaPass
-            // 
-            lnkOlvidaPass.AutoSize = true;
-            lnkOlvidaPass.Location = new Point(217, 253);
-            lnkOlvidaPass.Name = "lnkOlvidaPass";
-            lnkOlvidaPass.Size = new Size(119, 15);
-            lnkOlvidaPass.TabIndex = 6;
-            lnkOlvidaPass.TabStop = true;
-            lnkOlvidaPass.Text = "Olvide mi contraseña";
-            lnkOlvidaPass.LinkClicked += lnkOlvidaPass_LinkClicked;
+            label1.Size = new Size(220, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Porfavor Ingrese su usuario y contraseña";
             // 
             // formLogin
             // 
-            AcceptButton = btnIngresar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(lnkOlvidaPass);
-            Controls.Add(btnIngresar);
-            Controls.Add(txtPass);
-            Controls.Add(txtUsuario);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            ClientSize = new Size(460, 294);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            MinimizeBox = false;
+            Controls.Add(contraseñaTextBox);
+            Controls.Add(usuarioTextBox);
+            Controls.Add(iniciarSesionButton);
+            Controls.Add(contraseñaLabel);
+            Controls.Add(usuarioLabel);
             Name = "formLogin";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "Ingreso";
+            Text = "Inicio de sesión";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
+        private Label usuarioLabel;
+        private Label contraseñaLabel;
+        private Button iniciarSesionButton;
+        private TextBox usuarioTextBox;
+        private TextBox contraseñaTextBox;
         private Label label1;
-        private Label label2;
-        private Label label3;
-        private TextBox txtUsuario;
-        private TextBox txtPass;
-        private Button btnIngresar;
-        private LinkLabel lnkOlvidaPass;
     }
 }

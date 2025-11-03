@@ -1,0 +1,6 @@
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Reportes\obj\Debug\net8.0\Reportes.csproj.AssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Reportes\obj\Debug\net8.0\Reportes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Reportes\obj\Debug\net8.0\Reportes.AssemblyInfoInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Reportes\obj\Debug\net8.0\Reportes.AssemblyInfo.cs
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Reportes\obj\Debug\net8.0\Reportes.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Reportes\obj\Debug\net8.0\Reportes.sourcelink.json

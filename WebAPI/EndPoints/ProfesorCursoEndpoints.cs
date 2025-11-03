@@ -1,5 +1,5 @@
 ﻿using DTOs;
-using Domain.Model;
+using Application.Services;
 using Microsoft.AspNetCore.Http;
 
 namespace WebAPI.EndPoints
@@ -38,7 +38,7 @@ namespace WebAPI.EndPoints
                 {
                     ProfesorCursoService ProfesorCursoService = new ProfesorCursoService();
                     var criteria = new ProfesorCursoCriteriaDTO { IdProfesor = idProfesor };
-                    var ProfesorsCursos = await ProfesorCursoService.GetByCriteria(criteria);
+                    var ProfesoresCursos = await ProfesorCursoService.GetByCriteria(criteria);
                     return Results.Ok(ProfesoresCursos);
                 }
                 catch (Exception ex)
@@ -49,14 +49,16 @@ namespace WebAPI.EndPoints
             .WithName("GetProfesorCursoByCriteria")
             .WithOpenApi();
 
-
-            app.MapPut("/ProfesoresCursos/{id}", async (ProfesorCursoDTO dto) =>
+            app.MapPut("/ProfesoresCursos/{idCurso}/{idProfesor}", async (int idCurso, int idProfesor, ProfesorCursoDTO dto) =>
             {
                 try
                 {
                     ProfesorCursoService ProfesorCursoService = new ProfesorCursoService();
 
-                    var found = await ProfesorCursoService.Update(dto);
+                    dto.IdCurso = idCurso;
+                    dto.IdProfesor = idProfesor;
+
+                    var found = await ProfesorCursoService.UpdateByCursoProfesor(dto);
 
                     if (!found)
                     {
@@ -70,7 +72,8 @@ namespace WebAPI.EndPoints
                     return Results.BadRequest(new { error = ex.Message });
                 }
             })
-            .WithName("UpdateProfesorCurso")
+            .WithName("UpdateProfesorCursoByCursoProfesor")
+            .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status404NotFound)
             .Produces(StatusCodes.Status400BadRequest)
             .WithOpenApi();

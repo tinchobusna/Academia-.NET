@@ -38,40 +38,39 @@
             // 
             // refrescarButton
             // 
-            refrescarButton.Location = new Point(287, 293);
-            refrescarButton.Margin = new Padding(3, 4, 3, 4);
+            refrescarButton.Location = new Point(251, 12);
             refrescarButton.Name = "refrescarButton";
-            refrescarButton.Size = new Size(95, 39);
+            refrescarButton.Size = new Size(83, 29);
             refrescarButton.TabIndex = 19;
             refrescarButton.Text = "Refrescar";
             refrescarButton.UseVisualStyleBackColor = true;
             // 
             // modificarButton
             // 
-            modificarButton.Location = new Point(486, 293);
-            modificarButton.Margin = new Padding(2, 3, 2, 3);
+            modificarButton.Location = new Point(425, 12);
+            modificarButton.Margin = new Padding(2, 2, 2, 2);
             modificarButton.Name = "modificarButton";
-            modificarButton.Size = new Size(95, 39);
+            modificarButton.Size = new Size(83, 29);
             modificarButton.TabIndex = 18;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
             // 
             // eliminarButton
             // 
-            eliminarButton.Location = new Point(387, 293);
-            eliminarButton.Margin = new Padding(2, 3, 2, 3);
+            eliminarButton.Location = new Point(339, 12);
+            eliminarButton.Margin = new Padding(2, 2, 2, 2);
             eliminarButton.Name = "eliminarButton";
-            eliminarButton.Size = new Size(95, 39);
+            eliminarButton.Size = new Size(83, 29);
             eliminarButton.TabIndex = 17;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
             // 
             // agregarButton
             // 
-            agregarButton.Location = new Point(585, 293);
-            agregarButton.Margin = new Padding(2, 3, 2, 3);
+            agregarButton.Location = new Point(512, 12);
+            agregarButton.Margin = new Padding(2, 2, 2, 2);
             agregarButton.Name = "agregarButton";
-            agregarButton.Size = new Size(95, 39);
+            agregarButton.Size = new Size(83, 29);
             agregarButton.TabIndex = 16;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
@@ -80,27 +79,28 @@
             // 
             especialidadesDataGridView.AllowUserToOrderColumns = true;
             especialidadesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            especialidadesDataGridView.Location = new Point(11, 12);
-            especialidadesDataGridView.Margin = new Padding(2, 3, 2, 3);
+            especialidadesDataGridView.Location = new Point(11, 55);
+            especialidadesDataGridView.Margin = new Padding(2, 2, 2, 2);
             especialidadesDataGridView.MultiSelect = false;
             especialidadesDataGridView.Name = "especialidadesDataGridView";
             especialidadesDataGridView.ReadOnly = true;
             especialidadesDataGridView.RowHeadersWidth = 82;
             especialidadesDataGridView.RowTemplate.Height = 41;
             especialidadesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            especialidadesDataGridView.Size = new Size(669, 274);
+            especialidadesDataGridView.Size = new Size(585, 241);
             especialidadesDataGridView.TabIndex = 15;
             // 
             // EspecialidadesLista
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(693, 351);
+            ClientSize = new Size(606, 307);
             Controls.Add(refrescarButton);
             Controls.Add(modificarButton);
             Controls.Add(eliminarButton);
             Controls.Add(agregarButton);
             Controls.Add(especialidadesDataGridView);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "EspecialidadesLista";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)especialidadesDataGridView).EndInit();
