@@ -1,0 +1,257 @@
+@page "/personas/nueva"
+@page "/personas/editar/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>@(Id == 0 ? "Nueva Persona" : "Editar Persona")</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">@(Id == 0 ? "Nueva Persona" : "Editar Persona")</h3>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+
+                    @if (isLoading)
+                    {
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="@persona" OnValidSubmit="@HandleSubmit">
+                            <DataAnnotationsValidator />
+
+                            @if (Id > 0)
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label">ID</label>
+                                    <input type="text" class="form-control" value="@persona.IdPersona" disabled />
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="apellido" class="form-label">Apellido *</label>
+                                    <InputText id="apellido" class="form-control" @bind-Value="persona.Apellido" placeholder="Ingrese el apellido" />
+                                    <ValidationMessage For="@(() => persona.Apellido)" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <InputText id="email" type="email" class="form-control" @bind-Value="persona.Email" placeholder="Ingrese el email" />
+                                    <ValidationMessage For="@(() => persona.Email)" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="direccion" class="form-label">Dirección</label>
+                                    <InputText id="direccion" class="form-control" @bind-Value="persona.Direccion" placeholder="Ingrese la dirección" />
+                                    <ValidationMessage For="@(() => persona.Direccion)" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <InputText id="telefono" class="form-control" @bind-Value="persona.Telefono" placeholder="Ingrese el teléfono" />
+                                    <ValidationMessage For="@(() => persona.Telefono)" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento *</label>
+                                    <InputDate id="fechaNacimiento" class="form-control" @bind-Value="persona.FechaNacimiento" />
+                                    <ValidationMessage For="@(() => persona.FechaNacimiento)" />
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="legajo" class="form-label">Legajo *</label>
+                                    <InputNumber id="legajo" class="form-control" @bind-Value="persona.Legajo" />
+                                    <ValidationMessage For="@(() => persona.Legajo)" />
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="tipoPersona" class="form-label">Tipo de Persona *</label>
+                                    <InputSelect id="tipoPersona" class="form-select" @bind-Value="persona.TipoPersona">
+                                        <option value="">-- Seleccione --</option>
+                                        <option value="Admin">Administrador</option>
+                                        <option value="Docente">Docente</option>
+                                        <option value="Alumno">Alumno</option>
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => persona.TipoPersona)" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="plan" class="form-label">Plan *</label>
+                                <InputSelect id="plan" class="form-select" @bind-Value="persona.IdPlan">
+                                    <option value="0">-- Seleccione un plan --</option>
+                                    @if (planes != null)
+                                    {
+                                        @foreach (var plan in planes)
+                                        {
+                                            <option value="@plan.IdPlan">@plan.Descripcion</option>
+                                        }
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => persona.IdPlan)" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancelar">
+                                    <span class="bi bi-x-circle"></span> Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        <span>Guardando...</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bi bi-check-circle"></span>
+                                        <span> Guardar</span>
+                                    }
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private PersonaDTO persona = new() { FechaNacimiento = DateTime.Now.AddYears(-20) };
+    private List<PlanDTO>? planes;
+    private bool isLoading = false;
+    private bool isSaving = false;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPlanes();
+        
+        if (Id > 0)
+        {
+            await LoadPersona();
+        }
+    }
+
+    private async Task LoadPlanes()
+    {
+        try
+        {
+            var result = await API.Planes.PlanApiClient.GetAllAsync();
+            planes = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar planes: {ex.Message}";
+        }
+    }
+
+    private async Task LoadPersona()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            persona = await API.Personas.PersonaApiClient.GetAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar persona: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            isSaving = true;
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(persona.Apellido))
+            {
+                errorMessage = "El apellido es requerido";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(persona.Email))
+            {
+                errorMessage = "El email es requerido";
+                return;
+            }
+
+            if (persona.Legajo <= 0)
+            {
+                errorMessage = "El legajo debe ser mayor a 0";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(persona.TipoPersona))
+            {
+                errorMessage = "Debe seleccionar un tipo de persona";
+                return;
+            }
+
+            if (persona.IdPlan == 0)
+            {
+                errorMessage = "Debe seleccionar un plan";
+                return;
+            }
+
+            if (Id == 0)
+            {
+                await API.Personas.PersonaApiClient.AddAsync(persona);
+            }
+            else
+            {
+                await API.Personas.PersonaApiClient.UpdateAsync(persona);
+            }
+
+            Navigation.NavigateTo("/personas");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al guardar persona: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancelar()
+    {
+        Navigation.NavigateTo("/personas");
+    }
+}

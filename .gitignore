@@ -1,3 +1,5 @@
 **/.vs/
 **/.database/
 **/.scripts/
+**/.bin/
+**/.obj/

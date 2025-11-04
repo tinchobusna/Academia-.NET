@@ -1,0 +1,7 @@
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.csproj.AssemblyReference.cache
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.GeneratedMSBuildEditorConfig.editorconfig
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.AssemblyInfoInputs.cache
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.AssemblyInfo.cs
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.csproj.CoreCompileInputs.cache
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.MvcApplicationPartsAssemblyInfo.cache
+C:\NET 3-11\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.sourcelink.json

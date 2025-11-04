@@ -14,7 +14,7 @@ namespace API.Personas
         private static HttpClient client = new HttpClient();
         static PersonaApiClient()
         {
-            client.BaseAddress = new Uri("http://localhost:5077/");
+            client.BaseAddress = new Uri("http://localhost:5039/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

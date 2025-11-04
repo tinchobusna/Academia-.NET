@@ -1,0 +1,136 @@
+﻿@inject AuthenticationStateService AuthState
+@inject NavigationManager Navigation
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Sistema Académico</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        @if (AuthState.IsAuthenticated)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill" aria-hidden="true"></span> Inicio
+                </NavLink>
+            </div>
+
+            @if (AuthState.UserRole == "Admin")
+            {
+                <div class="nav-item px-3">
+                    <div class="nav-link text-white fw-bold">Administración</div>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="especialidades">
+                        <span class="bi bi-bookmark-fill" aria-hidden="true"></span> Especialidades
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="planes">
+                        <span class="bi bi-journal-text" aria-hidden="true"></span> Planes
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="materias">
+                        <span class="bi bi-book-fill" aria-hidden="true"></span> Materias
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="comisiones">
+                        <span class="bi bi-people-fill" aria-hidden="true"></span> Comisiones
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="cursos">
+                        <span class="bi bi-calendar-event" aria-hidden="true"></span> Cursos
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="personas">
+                        <span class="bi bi-person-fill" aria-hidden="true"></span> Personas
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="usuarios">
+                        <span class="bi bi-person-badge-fill" aria-hidden="true"></span> Usuarios
+                    </NavLink>
+                </div>
+            }
+
+            @if (AuthState.UserRole == "Alumno")
+            {
+                <div class="nav-item px-3">
+                    <div class="nav-link text-white fw-bold">Alumno</div>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="inscribirse">
+                        <span class="bi bi-pencil-square" aria-hidden="true"></span> Inscribirse a Curso
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="ver-notas">
+                        <span class="bi bi-card-list" aria-hidden="true"></span> Ver Notas
+                    </NavLink>
+                </div>
+            }
+
+            @if (AuthState.UserRole == "Docente")
+            {
+                <div class="nav-item px-3">
+                    <div class="nav-link text-white fw-bold">Docente</div>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="poner-notas">
+                        <span class="bi bi-clipboard-check" aria-hidden="true"></span> Poner Notas
+                    </NavLink>
+                </div>
+            }
+
+            <div class="nav-item px-3 mt-3">
+                <button class="btn btn-outline-light w-100" @onclick="Logout">
+                    <span class="bi bi-box-arrow-right" aria-hidden="true"></span> Cerrar Sesión
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="login">
+                    <span class="bi bi-box-arrow-in-right" aria-hidden="true"></span> Iniciar Sesión
+                </NavLink>
+            </div>
+        }
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    protected override void OnInitialized()
+    {
+        AuthState.OnChange += StateHasChanged;
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void Logout()
+    {
+        AuthState.Logout();
+        Navigation.NavigateTo("/login");
+    }
+
+    public void Dispose()
+    {
+        AuthState.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,204 @@
+@page "/comisiones/nueva"
+@page "/comisiones/editar/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>@(Id == 0 ? "Nueva Comisión" : "Editar Comisión")</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">@(Id == 0 ? "Nueva Comisión" : "Editar Comisión")</h3>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+
+                    @if (isLoading)
+                    {
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="@comision" OnValidSubmit="@HandleSubmit">
+                            <DataAnnotationsValidator />
+
+                            @if (Id > 0)
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label">ID</label>
+                                    <input type="text" class="form-control" value="@comision.IdComision" disabled />
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción *</label>
+                                <InputText id="descripcion" class="form-control" @bind-Value="comision.Descripcion" placeholder="Ingrese la descripción de la comisión" />
+                                <ValidationMessage For="@(() => comision.Descripcion)" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="anioEspecialidad" class="form-label">Año de Especialidad *</label>
+                                <InputNumber id="anioEspecialidad" class="form-control" @bind-Value="comision.AnioEspecialidad" />
+                                <ValidationMessage For="@(() => comision.AnioEspecialidad)" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="plan" class="form-label">Plan *</label>
+                                <InputSelect id="plan" class="form-select" @bind-Value="comision.IdPlan">
+                                    <option value="0">-- Seleccione un plan --</option>
+                                    @if (planes != null)
+                                    {
+                                        @foreach (var plan in planes)
+                                        {
+                                            <option value="@plan.IdPlan">@plan.Descripcion</option>
+                                        }
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => comision.IdPlan)" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancelar">
+                                    <span class="bi bi-x-circle"></span> Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        <span>Guardando...</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bi bi-check-circle"></span>
+                                        <span> Guardar</span>
+                                    }
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private ComisionDTO comision = new();
+    private List<PlanDTO>? planes;
+    private bool isLoading = false;
+    private bool isSaving = false;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPlanes();
+        
+        if (Id > 0)
+        {
+            await LoadComision();
+        }
+    }
+
+    private async Task LoadPlanes()
+    {
+        try
+        {
+            var result = await API.Planes.PlanApiClient.GetAllAsync();
+            planes = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar planes: {ex.Message}";
+        }
+    }
+
+    private async Task LoadComision()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            comision = await API.Comisiones.ComisionApiClient.GetAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar comisión: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            isSaving = true;
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(comision.Descripcion))
+            {
+                errorMessage = "La descripción es requerida";
+                return;
+            }
+
+            if (comision.AnioEspecialidad <= 0)
+            {
+                errorMessage = "El año de especialidad debe ser mayor a 0";
+                return;
+            }
+
+            if (comision.IdPlan == 0)
+            {
+                errorMessage = "Debe seleccionar un plan";
+                return;
+            }
+
+            if (Id == 0)
+            {
+                await API.Comisiones.ComisionApiClient.AddAsync(comision);
+            }
+            else
+            {
+                await API.Comisiones.ComisionApiClient.UpdateAsync(comision);
+            }
+
+            Navigation.NavigateTo("/comisiones");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al guardar comisión: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancelar()
+    {
+        Navigation.NavigateTo("/comisiones");
+    }
+}

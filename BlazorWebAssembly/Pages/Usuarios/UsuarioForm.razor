@@ -1,0 +1,268 @@
+@page "/usuarios/nuevo"
+@page "/usuarios/editar/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>@(Id == 0 ? "Nuevo Usuario" : "Editar Usuario")</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">@(Id == 0 ? "Nuevo Usuario" : "Editar Usuario")</h3>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+
+                    @if (isLoading)
+                    {
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="@usuario" OnValidSubmit="@HandleSubmit">
+                            <DataAnnotationsValidator />
+
+                            @if (Id > 0)
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label">ID</label>
+                                    <input type="text" class="form-control" value="@usuario.IdUsuario" disabled />
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombreUsuario" class="form-label">Nombre de Usuario *</label>
+                                    <InputText id="nombreUsuario" class="form-control" @bind-Value="usuario.NombreUsuario" placeholder="Ingrese el nombre de usuario" />
+                                    <ValidationMessage For="@(() => usuario.NombreUsuario)" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <InputText id="email" type="email" class="form-control" @bind-Value="usuario.Email" placeholder="Ingrese el email" />
+                                    <ValidationMessage For="@(() => usuario.Email)" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombre" class="form-label">Nombre *</label>
+                                    <InputText id="nombre" class="form-control" @bind-Value="usuario.Nombre" placeholder="Ingrese el nombre" />
+                                    <ValidationMessage For="@(() => usuario.Nombre)" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="apellido" class="form-label">Apellido *</label>
+                                    <InputText id="apellido" class="form-control" @bind-Value="usuario.Apellido" placeholder="Ingrese el apellido" />
+                                    <ValidationMessage For="@(() => usuario.Apellido)" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="clave" class="form-label">@(Id == 0 ? "Contraseña *" : "Contraseña (dejar en blanco para no cambiar)")</label>
+                                    <InputText id="clave" type="password" class="form-control" @bind-Value="usuario.Clave" placeholder="Ingrese la contraseña" />
+                                    <ValidationMessage For="@(() => usuario.Clave)" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="persona" class="form-label">Persona *</label>
+                                    <InputSelect id="persona" class="form-select" @bind-Value="usuario.IdPersona">
+                                        <option value="0">-- Seleccione una persona --</option>
+                                        @if (personas != null)
+                                        {
+                                            @foreach (var persona in personas)
+                                            {
+                                                <option value="@persona.IdPersona">@persona.Apellido - @persona.Email</option>
+                                            }
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => usuario.IdPersona)" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check">
+                                        <InputCheckbox id="habilitado" class="form-check-input" @bind-Value="usuario.Habilitado" />
+                                        <label class="form-check-label" for="habilitado">
+                                            Usuario Habilitado
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check">
+                                        <InputCheckbox id="cambiaClave" class="form-check-input" @bind-Value="usuario.CambiaClave" />
+                                        <label class="form-check-label" for="cambiaClave">
+                                            Debe Cambiar Contraseña
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancelar">
+                                    <span class="bi bi-x-circle"></span> Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        <span>Guardando...</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bi bi-check-circle"></span>
+                                        <span> Guardar</span>
+                                    }
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private UsuarioDTO usuario = new() { Habilitado = true };
+    private List<PersonaDTO>? personas;
+    private bool isLoading = false;
+    private bool isSaving = false;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPersonas();
+        
+        if (Id > 0)
+        {
+            await LoadUsuario();
+        }
+    }
+
+    private async Task LoadPersonas()
+    {
+        try
+        {
+            var result = await API.Personas.PersonaApiClient.GetAllAsync();
+            personas = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar personas: {ex.Message}";
+        }
+    }
+
+    private async Task LoadUsuario()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            usuario = await API.Usuarios.UsuarioApiClient.GetAsync(Id);
+            // Clear password for security
+            usuario.Clave = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar usuario: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            isSaving = true;
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(usuario.NombreUsuario))
+            {
+                errorMessage = "El nombre de usuario es requerido";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(usuario.Nombre))
+            {
+                errorMessage = "El nombre es requerido";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(usuario.Apellido))
+            {
+                errorMessage = "El apellido es requerido";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(usuario.Email))
+            {
+                errorMessage = "El email es requerido";
+                return;
+            }
+
+            if (Id == 0 && string.IsNullOrWhiteSpace(usuario.Clave))
+            {
+                errorMessage = "La contraseña es requerida para nuevos usuarios";
+                return;
+            }
+
+            if (usuario.IdPersona == 0)
+            {
+                errorMessage = "Debe seleccionar una persona";
+                return;
+            }
+
+            if (Id == 0)
+            {
+                await API.Usuarios.UsuarioApiClient.AddAsync(usuario);
+            }
+            else
+            {
+                await API.Usuarios.UsuarioApiClient.UpdateAsync(usuario);
+            }
+
+            Navigation.NavigateTo("/usuarios");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al guardar usuario: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancelar()
+    {
+        Navigation.NavigateTo("/usuarios");
+    }
+}

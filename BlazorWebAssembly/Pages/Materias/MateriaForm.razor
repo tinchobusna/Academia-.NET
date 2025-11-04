@@ -1,0 +1,218 @@
+@page "/materias/nueva"
+@page "/materias/editar/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>@(Id == 0 ? "Nueva Materia" : "Editar Materia")</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">@(Id == 0 ? "Nueva Materia" : "Editar Materia")</h3>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+
+                    @if (isLoading)
+                    {
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="@materia" OnValidSubmit="@HandleSubmit">
+                            <DataAnnotationsValidator />
+
+                            @if (Id > 0)
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label">ID</label>
+                                    <input type="text" class="form-control" value="@materia.IdMateria" disabled />
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción *</label>
+                                <InputText id="descripcion" class="form-control" @bind-Value="materia.Descripcion" placeholder="Ingrese la descripción de la materia" />
+                                <ValidationMessage For="@(() => materia.Descripcion)" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="hsSemanales" class="form-label">Horas Semanales *</label>
+                                    <InputNumber id="hsSemanales" class="form-control" @bind-Value="materia.HsSemanales" />
+                                    <ValidationMessage For="@(() => materia.HsSemanales)" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="hsTotales" class="form-label">Horas Totales *</label>
+                                    <InputNumber id="hsTotales" class="form-control" @bind-Value="materia.HsTotales" />
+                                    <ValidationMessage For="@(() => materia.HsTotales)" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="plan" class="form-label">Plan *</label>
+                                <InputSelect id="plan" class="form-select" @bind-Value="materia.IdPlan">
+                                    <option value="0">-- Seleccione un plan --</option>
+                                    @if (planes != null)
+                                    {
+                                        @foreach (var plan in planes)
+                                        {
+                                            <option value="@plan.IdPlan">@plan.Descripcion</option>
+                                        }
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => materia.IdPlan)" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancelar">
+                                    <span class="bi bi-x-circle"></span> Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        <span>Guardando...</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bi bi-check-circle"></span>
+                                        <span> Guardar</span>
+                                    }
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private MateriaDTO materia = new();
+    private List<PlanDTO>? planes;
+    private bool isLoading = false;
+    private bool isSaving = false;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPlanes();
+        
+        if (Id > 0)
+        {
+            await LoadMateria();
+        }
+    }
+
+    private async Task LoadPlanes()
+    {
+        try
+        {
+            var result = await API.Planes.PlanApiClient.GetAllAsync();
+            planes = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar planes: {ex.Message}";
+        }
+    }
+
+    private async Task LoadMateria()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            materia = await API.Materias.MateriaApiClient.GetAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar materia: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            isSaving = true;
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(materia.Descripcion))
+            {
+                errorMessage = "La descripción es requerida";
+                return;
+            }
+
+            if (materia.HsSemanales <= 0)
+            {
+                errorMessage = "Las horas semanales deben ser mayor a 0";
+                return;
+            }
+
+            if (materia.HsTotales <= 0)
+            {
+                errorMessage = "Las horas totales deben ser mayor a 0";
+                return;
+            }
+
+            if (materia.IdPlan == 0)
+            {
+                errorMessage = "Debe seleccionar un plan";
+                return;
+            }
+
+            if (Id == 0)
+            {
+                await API.Materias.MateriaApiClient.AddAsync(materia);
+            }
+            else
+            {
+                await API.Materias.MateriaApiClient.UpdateAsync(materia);
+            }
+
+            Navigation.NavigateTo("/materias");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al guardar materia: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancelar()
+    {
+        Navigation.NavigateTo("/materias");
+    }
+}

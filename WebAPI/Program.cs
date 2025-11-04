@@ -33,8 +33,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.WebHost.UseUrls(
-    "http://localhost:5077",
-    "https://localhost:7238"
+    "http://localhost:5039",
+    "https://localhost:7048"
 );
 
 var app = builder.Build();

@@ -8,7 +8,7 @@ namespace API.Reportes
     {
         private static readonly HttpClient _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("http://localhost:5077/")
+            BaseAddress = new Uri("http://localhost:5039/")
         };
 
         public static async Task<byte[]> GetReporteCursosAsync()

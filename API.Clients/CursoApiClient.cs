@@ -14,7 +14,7 @@ namespace API.Cursos
         private static HttpClient client = new HttpClient();
         static CursoApiClient()
         {
-            client.BaseAddress = new Uri("http://localhost:5077/");
+            client.BaseAddress = new Uri("http://localhost:5039/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

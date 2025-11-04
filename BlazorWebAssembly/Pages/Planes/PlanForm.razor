@@ -1,0 +1,192 @@
+@page "/planes/nuevo"
+@page "/planes/editar/{Id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>@(Id == 0 ? "Nuevo Plan" : "Editar Plan")</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">@(Id == 0 ? "Nuevo Plan" : "Editar Plan")</h3>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+
+                    @if (isLoading)
+                    {
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="@plan" OnValidSubmit="@HandleSubmit">
+                            <DataAnnotationsValidator />
+
+                            @if (Id > 0)
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label">ID</label>
+                                    <input type="text" class="form-control" value="@plan.IdPlan" disabled />
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción *</label>
+                                <InputText id="descripcion" class="form-control" @bind-Value="plan.Descripcion" placeholder="Ingrese la descripción del plan" />
+                                <ValidationMessage For="@(() => plan.Descripcion)" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="especialidad" class="form-label">Especialidad *</label>
+                                <InputSelect id="especialidad" class="form-select" @bind-Value="plan.IdEspecialidad">
+                                    <option value="0">-- Seleccione una especialidad --</option>
+                                    @if (especialidades != null)
+                                    {
+                                        @foreach (var esp in especialidades)
+                                        {
+                                            <option value="@esp.IdEspecialidad">@esp.Descripcion</option>
+                                        }
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => plan.IdEspecialidad)" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" @onclick="Cancelar">
+                                    <span class="bi bi-x-circle"></span> Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                                    @if (isSaving)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        <span>Guardando...</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bi bi-check-circle"></span>
+                                        <span> Guardar</span>
+                                    }
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private PlanDTO plan = new();
+    private List<EspecialidadDTO>? especialidades;
+    private bool isLoading = false;
+    private bool isSaving = false;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadEspecialidades();
+        
+        if (Id > 0)
+        {
+            await LoadPlan();
+        }
+    }
+
+    private async Task LoadEspecialidades()
+    {
+        try
+        {
+            var result = await EspecialidadApiClient.GetAllAsync();
+            especialidades = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar especialidades: {ex.Message}";
+        }
+    }
+
+    private async Task LoadPlan()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            plan = await API.Planes.PlanApiClient.GetAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar plan: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            isSaving = true;
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(plan.Descripcion))
+            {
+                errorMessage = "La descripción es requerida";
+                return;
+            }
+
+            if (plan.IdEspecialidad == 0)
+            {
+                errorMessage = "Debe seleccionar una especialidad";
+                return;
+            }
+
+            if (Id == 0)
+            {
+                await API.Planes.PlanApiClient.AddAsync(plan);
+            }
+            else
+            {
+                await API.Planes.PlanApiClient.UpdateAsync(plan);
+            }
+
+            Navigation.NavigateTo("/planes");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al guardar plan: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void Cancelar()
+    {
+        Navigation.NavigateTo("/planes");
+    }
+}

@@ -1,0 +1,216 @@
+@page "/comisiones"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>Comisiones</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Gestión de Comisiones</h2>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @errorMessage
+            <button type="button" class="btn-close" @onclick="@(() => errorMessage = string.Empty)"></button>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @successMessage
+            <button type="button" class="btn-close" @onclick="@(() => successMessage = string.Empty)"></button>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="col">
+            <button class="btn btn-primary" @onclick="AgregarComision">
+                <span class="bi bi-plus-circle"></span> Agregar
+            </button>
+            <button class="btn btn-secondary ms-2" @onclick="LoadComisiones">
+                <span class="bi bi-arrow-clockwise"></span> Refrescar
+            </button>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+    }
+    else if (comisiones == null || !comisiones.Any())
+    {
+        <div class="alert alert-info">No hay comisiones registradas</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Año Especialidad</th>
+                        <th>Plan</th>
+                        <th style="width: 200px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var comision in comisiones)
+                    {
+                        <tr>
+                            <td>@comision.IdComision</td>
+                            <td>@comision.Descripcion</td>
+                            <td>@comision.AnioEspecialidad</td>
+                            <td>@GetPlanNombre(comision.IdPlan)</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning" @onclick="() => ModificarComision(comision.IdComision)">
+                                    <span class="bi bi-pencil"></span> Modificar
+                                </button>
+                                <button class="btn btn-sm btn-danger ms-1" @onclick="() => ConfirmarEliminar(comision)">
+                                    <span class="bi bi-trash"></span> Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@if (showDeleteConfirm)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" @onclick="CancelarEliminar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro que desea eliminar la comisión <strong>@comisionToDelete?.Descripcion</strong> (ID: @comisionToDelete?.IdComision)?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="CancelarEliminar">Cancelar</button>
+                    <button type="button" class="btn btn-danger" @onclick="EliminarComision">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<ComisionDTO>? comisiones;
+    private List<PlanDTO>? planes;
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+    private bool showDeleteConfirm = false;
+    private ComisionDTO? comisionToDelete;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        await LoadComisiones();
+        await LoadPlanes();
+    }
+
+    private async Task LoadComisiones()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            var result = await API.Comisiones.ComisionApiClient.GetAllAsync();
+            comisiones = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar comisiones: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task LoadPlanes()
+    {
+        try
+        {
+            var result = await API.Planes.PlanApiClient.GetAllAsync();
+            planes = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar planes: {ex.Message}";
+        }
+    }
+
+    private string GetPlanNombre(int idPlan)
+    {
+        var plan = planes?.FirstOrDefault(p => p.IdPlan == idPlan);
+        return plan?.Descripcion ?? "N/A";
+    }
+
+    private void AgregarComision()
+    {
+        Navigation.NavigateTo("/comisiones/nueva");
+    }
+
+    private void ModificarComision(int id)
+    {
+        Navigation.NavigateTo($"/comisiones/editar/{id}");
+    }
+
+    private void ConfirmarEliminar(ComisionDTO comision)
+    {
+        comisionToDelete = comision;
+        showDeleteConfirm = true;
+    }
+
+    private void CancelarEliminar()
+    {
+        comisionToDelete = null;
+        showDeleteConfirm = false;
+    }
+
+    private async Task EliminarComision()
+    {
+        if (comisionToDelete == null) return;
+
+        try
+        {
+            await API.Comisiones.ComisionApiClient.DeleteAsync(comisionToDelete.IdComision);
+            successMessage = $"Comisión '{comisionToDelete.Descripcion}' eliminada correctamente";
+            showDeleteConfirm = false;
+            comisionToDelete = null;
+            await LoadComisiones();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar comisión: {ex.Message}";
+            showDeleteConfirm = false;
+        }
+    }
+}

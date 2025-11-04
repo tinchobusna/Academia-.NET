@@ -1,0 +1,214 @@
+@page "/planes"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateService AuthState
+
+<PageTitle>Planes</PageTitle>
+
+@if (AuthState.UserRole != "Admin")
+{
+    <div class="alert alert-danger">No tiene permisos para acceder a esta página</div>
+    return;
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Gestión de Planes</h2>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @errorMessage
+            <button type="button" class="btn-close" @onclick="@(() => errorMessage = string.Empty)"></button>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @successMessage
+            <button type="button" class="btn-close" @onclick="@(() => successMessage = string.Empty)"></button>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="col">
+            <button class="btn btn-primary" @onclick="AgregarPlan">
+                <span class="bi bi-plus-circle"></span> Agregar
+            </button>
+            <button class="btn btn-secondary ms-2" @onclick="LoadPlanes">
+                <span class="bi bi-arrow-clockwise"></span> Refrescar
+            </button>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+    }
+    else if (planes == null || !planes.Any())
+    {
+        <div class="alert alert-info">No hay planes registrados</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Especialidad</th>
+                        <th style="width: 200px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var plan in planes)
+                    {
+                        <tr>
+                            <td>@plan.IdPlan</td>
+                            <td>@plan.Descripcion</td>
+                            <td>@GetEspecialidadNombre(plan.IdEspecialidad)</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning" @onclick="() => ModificarPlan(plan.IdPlan)">
+                                    <span class="bi bi-pencil"></span> Modificar
+                                </button>
+                                <button class="btn btn-sm btn-danger ms-1" @onclick="() => ConfirmarEliminar(plan)">
+                                    <span class="bi bi-trash"></span> Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@if (showDeleteConfirm)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" @onclick="CancelarEliminar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro que desea eliminar el plan <strong>@planToDelete?.Descripcion</strong> (ID: @planToDelete?.IdPlan)?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="CancelarEliminar">Cancelar</button>
+                    <button type="button" class="btn btn-danger" @onclick="EliminarPlan">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<PlanDTO>? planes;
+    private List<EspecialidadDTO>? especialidades;
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+    private bool showDeleteConfirm = false;
+    private PlanDTO? planToDelete;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        await LoadPlanes();
+        await LoadEspecialidades();
+    }
+
+    private async Task LoadPlanes()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            var result = await API.Planes.PlanApiClient.GetAllAsync();
+            planes = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar planes: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task LoadEspecialidades()
+    {
+        try
+        {
+            var result = await EspecialidadApiClient.GetAllAsync();
+            especialidades = result?.ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar especialidades: {ex.Message}";
+        }
+    }
+
+    private string GetEspecialidadNombre(int idEspecialidad)
+    {
+        var especialidad = especialidades?.FirstOrDefault(e => e.IdEspecialidad == idEspecialidad);
+        return especialidad?.Descripcion ?? "N/A";
+    }
+
+    private void AgregarPlan()
+    {
+        Navigation.NavigateTo("/planes/nuevo");
+    }
+
+    private void ModificarPlan(int id)
+    {
+        Navigation.NavigateTo($"/planes/editar/{id}");
+    }
+
+    private void ConfirmarEliminar(PlanDTO plan)
+    {
+        planToDelete = plan;
+        showDeleteConfirm = true;
+    }
+
+    private void CancelarEliminar()
+    {
+        planToDelete = null;
+        showDeleteConfirm = false;
+    }
+
+    private async Task EliminarPlan()
+    {
+        if (planToDelete == null) return;
+
+        try
+        {
+            await API.Planes.PlanApiClient.DeleteAsync(planToDelete.IdPlan);
+            successMessage = $"Plan '{planToDelete.Descripcion}' eliminado correctamente";
+            showDeleteConfirm = false;
+            planToDelete = null;
+            await LoadPlanes();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar plan: {ex.Message}";
+            showDeleteConfirm = false;
+        }
+    }
+}

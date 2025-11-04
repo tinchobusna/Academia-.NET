@@ -1,0 +1,150 @@
+﻿@page "/"
+@inject AuthenticationStateService AuthState
+@inject NavigationManager Navigation
+
+<PageTitle>Sistema de Gestión Académica</PageTitle>
+
+@if (!AuthState.IsAuthenticated)
+{
+    Navigation.NavigateTo("/login");
+}
+else
+{
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Bienvenido, @AuthState.CurrentUser?.Nombre @AuthState.CurrentUser?.Apellido</h1>
+                <div class="alert alert-info">
+                    <strong>Rol:</strong> @GetRoleDisplayName()
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            @if (AuthState.UserRole == "Admin")
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Especialidades</h5>
+                            <p class="card-text">Administrar especialidades del sistema</p>
+                            <a href="/especialidades" class="btn btn-primary">Ir a Especialidades</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Planes</h5>
+                            <p class="card-text">Administrar planes de estudio</p>
+                            <a href="/planes" class="btn btn-primary">Ir a Planes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Materias</h5>
+                            <p class="card-text">Administrar materias</p>
+                            <a href="/materias" class="btn btn-primary">Ir a Materias</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Comisiones</h5>
+                            <p class="card-text">Administrar comisiones</p>
+                            <a href="/comisiones" class="btn btn-primary">Ir a Comisiones</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Cursos</h5>
+                            <p class="card-text">Administrar cursos</p>
+                            <a href="/cursos" class="btn btn-primary">Ir a Cursos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Personas</h5>
+                            <p class="card-text">Administrar personas</p>
+                            <a href="/personas" class="btn btn-primary">Ir a Personas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Usuarios</h5>
+                            <p class="card-text">Administrar usuarios del sistema</p>
+                            <a href="/usuarios" class="btn btn-primary">Ir a Usuarios</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (AuthState.UserRole == "Alumno")
+            {
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Inscribirse a Curso</h5>
+                            <p class="card-text">Inscribirse a cursos disponibles</p>
+                            <a href="/inscribirse" class="btn btn-primary">Ir a Inscripción</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ver Notas</h5>
+                            <p class="card-text">Consultar mis calificaciones</p>
+                            <a href="/ver-notas" class="btn btn-primary">Ver Mis Notas</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (AuthState.UserRole == "Docente")
+            {
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Poner Notas</h5>
+                            <p class="card-text">Asignar calificaciones a alumnos</p>
+                            <a href="/poner-notas" class="btn btn-primary">Ir a Calificaciones</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        AuthState.OnChange += StateHasChanged;
+    }
+
+    private string GetRoleDisplayName()
+    {
+        return AuthState.UserRole switch
+        {
+            "Admin" => "Administrador",
+            "Alumno" => "Alumno",
+            "Docente" => "Docente",
+            _ => "Desconocido"
+        };
+    }
+
+    public void Dispose()
+    {
+        AuthState.OnChange -= StateHasChanged;
+    }
+}
