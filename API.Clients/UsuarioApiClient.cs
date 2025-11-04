@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using DTOs;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
@@ -55,7 +56,8 @@ namespace API.Usuarios
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<UsuarioDTO>>();
+                    var result = await response.Content.ReadFromJsonAsync<IEnumerable<UsuarioDTO>>();
+                    return result ?? new List<UsuarioDTO>();
                 }
                 else
                 {
@@ -140,15 +142,29 @@ namespace API.Usuarios
         }
         public static async Task<UsuarioDTO?> Login(string email, string clave)
         {
+            try
+            {
+                var criteria = new UsuarioCriteriaDTO { Email = email, Clave = clave };
 
-            var criteria = new UsuarioCriteriaDTO { Email = email, Clave = clave };
+                var response = await client.GetAsync($"usuarios/{criteria.Email}/{criteria.Clave}");
 
-            var response = await client.GetAsync($"usuarios/{criteria.Email}/{criteria.Clave}");
+                if (response.IsSuccessStatusCode)
+                    return await response.Content.ReadFromJsonAsync<UsuarioDTO>();
 
-            if (response.IsSuccessStatusCode)
-                return await response.Content.ReadFromJsonAsync<UsuarioDTO>();
-
-            return null;
+                return null;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error de conexión al iniciar sesión. Asegúrate de que la API esté ejecutándose en http://localhost:5039. Detalle: {ex.Message}", ex);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw new Exception($"Timeout al iniciar sesión. Detalle: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al iniciar sesión: {ex.Message}", ex);
+            }
         }
     }
 }

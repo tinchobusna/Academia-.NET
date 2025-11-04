@@ -55,7 +55,8 @@ namespace API.Personas
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<PersonaDTO>>();
+                    var result = await response.Content.ReadFromJsonAsync<IEnumerable<PersonaDTO>>();
+                    return result ?? new List<PersonaDTO>();
                 }
                 else
                 {

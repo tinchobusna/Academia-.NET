@@ -55,7 +55,8 @@ namespace API.Planes
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<PlanDTO>>();
+                    var result = await response.Content.ReadFromJsonAsync<IEnumerable<PlanDTO>>();
+                    return result ?? new List<PlanDTO>();
                 }
                 else
                 {

@@ -56,7 +56,8 @@ namespace API.Materias
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<MateriaDTO>>();
+                    var result = await response.Content.ReadFromJsonAsync<IEnumerable<MateriaDTO>>();
+                    return result ?? new List<MateriaDTO>();
                 }
                 else
                 {

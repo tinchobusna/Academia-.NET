@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using DTOs;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
@@ -55,7 +56,8 @@ namespace API.Cursos
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<CursoDTO>>();
+                    var result = await response.Content.ReadFromJsonAsync<IEnumerable<CursoDTO>>();
+                    return result ?? new List<CursoDTO>();
                 }
                 else
                 {
