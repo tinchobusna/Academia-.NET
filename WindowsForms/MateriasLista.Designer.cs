@@ -95,6 +95,7 @@
             Controls.Add(materiasDataGridView);
             Name = "MateriasLista";
             Text = "MateriasLista";
+            Load += materias_load;
             ((System.ComponentModel.ISupportInitialize)materiasDataGridView).EndInit();
             ResumeLayout(false);
         }

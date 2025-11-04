@@ -95,6 +95,7 @@
             Controls.Add(cursosDataGridView);
             Name = "CursosLista";
             Text = "Lista de Cursos ";
+            Load += Cursos_Load;
             ((System.ComponentModel.ISupportInitialize)cursosDataGridView).EndInit();
             ResumeLayout(false);
         }

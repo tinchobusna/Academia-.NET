@@ -103,6 +103,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "EspecialidadesLista";
             Text = "Form1";
+            Load += Especialidades_Load;
             ((System.ComponentModel.ISupportInitialize)especialidadesDataGridView).EndInit();
             ResumeLayout(false);
         }

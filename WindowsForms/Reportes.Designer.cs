@@ -70,6 +70,8 @@
             Controls.Add(reportePlanesButton);
             Name = "Reportes";
             Text = "Form1";
+            reportePlanesButton.Click += reportePlanesButton_Click;
+            reporteCursosButton.Click += reporteCursosButton_Click;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -95,6 +95,7 @@
             Controls.Add(planesDataGridView);
             Name = "PlanesLista";
             Text = "Lista de Planes";
+            Load += planes_load;
             ((System.ComponentModel.ISupportInitialize)planesDataGridView).EndInit();
             ResumeLayout(false);
         }

@@ -95,6 +95,7 @@
             Controls.Add(usuariosDataGridView);
             Name = "UsuariosLista";
             Text = "UsuariosLista";
+            Load += Usuarios_Load;
             ((System.ComponentModel.ISupportInitialize)usuariosDataGridView).EndInit();
             ResumeLayout(false);
         }
