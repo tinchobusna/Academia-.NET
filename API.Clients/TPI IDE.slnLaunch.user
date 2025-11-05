@@ -23,7 +23,7 @@
         "DebugTarget": "https"
       },
       {
-        "Path": "..\\BlazorWebAssembly\\BlazorWebAssembly.csproj",
+        "Path": "..\\BlazorWebAssembly\\BlazorAssembly.csproj",
         "Action": "Start",
         "DebugTarget": "https"
       }

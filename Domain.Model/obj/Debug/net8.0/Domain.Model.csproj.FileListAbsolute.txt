@@ -1,0 +1,12 @@
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\bin\Debug\net8.0\Domain.Model.deps.json
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\bin\Debug\net8.0\Domain.Model.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\bin\Debug\net8.0\Domain.Model.pdb
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.AssemblyInfoInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.AssemblyInfo.cs
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.sourcelink.json
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\refint\Domain.Model.dll
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\Domain.Model.pdb
+C:\Users\marti\OneDrive\Escritorio\Academia-.NET\Domain.Model\obj\Debug\net8.0\ref\Domain.Model.dll

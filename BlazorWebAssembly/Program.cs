@@ -1,3 +1,4 @@
+/*
 using BlazorWebAssembly;
 using BlazorWebAssembly.Services;
 using Microsoft.AspNetCore.Components.Web;
@@ -14,3 +15,25 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://
 builder.Services.AddScoped<AuthenticationStateService>();
 
 await builder.Build().RunAsync();
+*/
+using BlazorWebAssembly;
+using BlazorWebAssembly.Services;
+using Microsoft.EntityFrameworkCore;
+using System;
+using Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+builder.Services.AddDbContext<TPIContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<AuthenticationStateService>();
+
+var app = builder.Build();
+
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+
+app.Run();
