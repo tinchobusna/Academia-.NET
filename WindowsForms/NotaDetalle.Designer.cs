@@ -37,55 +37,54 @@
             // 
             // buttonCancelar
             // 
-            buttonCancelar.Location = new Point(151, 87);
-            buttonCancelar.Margin = new Padding(3, 4, 3, 4);
+            buttonCancelar.Location = new Point(132, 65);
             buttonCancelar.Name = "buttonCancelar";
-            buttonCancelar.Size = new Size(86, 31);
+            buttonCancelar.Size = new Size(75, 23);
             buttonCancelar.TabIndex = 5;
             buttonCancelar.Text = "Cancelar";
             buttonCancelar.UseVisualStyleBackColor = true;
+            buttonCancelar.Click += buttonCancelar_Click;
             // 
             // buttonAceptar
             // 
-            buttonAceptar.Location = new Point(243, 87);
-            buttonAceptar.Margin = new Padding(3, 4, 3, 4);
+            buttonAceptar.Location = new Point(213, 65);
             buttonAceptar.Name = "buttonAceptar";
-            buttonAceptar.Size = new Size(86, 31);
+            buttonAceptar.Size = new Size(75, 23);
             buttonAceptar.TabIndex = 4;
             buttonAceptar.Text = "Aceptar";
             buttonAceptar.UseVisualStyleBackColor = true;
+            buttonAceptar.Click += buttonAceptar_Click;
             // 
             // numericUpDownNota
             // 
-            numericUpDownNota.Location = new Point(12, 52);
-            numericUpDownNota.Margin = new Padding(3, 4, 3, 4);
+            numericUpDownNota.Location = new Point(10, 39);
             numericUpDownNota.Name = "numericUpDownNota";
-            numericUpDownNota.Size = new Size(306, 27);
+            numericUpDownNota.Size = new Size(268, 23);
             numericUpDownNota.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 28);
+            label1.Location = new Point(10, 21);
             label1.Name = "label1";
-            label1.Size = new Size(112, 20);
+            label1.Size = new Size(89, 15);
             label1.TabIndex = 6;
             label1.Text = "Indique la nota:";
             // 
             // NotaDetalle
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(341, 134);
+            ClientSize = new Size(298, 100);
             Controls.Add(label1);
             Controls.Add(buttonCancelar);
             Controls.Add(buttonAceptar);
             Controls.Add(numericUpDownNota);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "NotaDetalle";
-            Text = "Form1";
+            Text = "Nota Detalle";
             ((System.ComponentModel.ISupportInitialize)numericUpDownNota).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

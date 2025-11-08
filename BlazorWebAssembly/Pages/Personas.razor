@@ -1,0 +1,312 @@
+﻿@page "/personas"
+@using DTOs
+@using API.Personas
+@using API.Planes
+@using BlazorWebAssembly.Components
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+<PageTitle>Personas</PageTitle>
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-header-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="page-header-text">
+                <h1>Gestión de Personas</h1>
+                <p>Administra estudiantes, profesores y personal administrativo</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+        <div style="padding: 2rem;">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert-modern alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>@errorMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => errorMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert-modern alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>@successMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => successMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (loading)
+            {
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Cargando personas...</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive-modern">
+                    <table class="table-modern">
+                        <thead>
+                            <tr>
+                                <th>IdPersona</th>
+                                <th>Dirección</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Legajo</th>
+                                <th>Teléfono</th>
+                                <th>Tipo Persona</th>
+                                <th>Plan</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (personas != null && personas.Any())
+                            {
+                                @foreach (var persona in personas)
+                                {
+                                    var planDesc = planes?.FirstOrDefault(p => p.IdPlan == persona.IdPlan)?.Descripcion ?? "Sin plan";
+                                    <tr @onclick="() => SelectPersona(persona)"
+                                        class="@(selectedPersona?.IdPersona == persona.IdPersona ? "table-active" : "")"
+                                        style="cursor: pointer;">
+                                        <td>@persona.IdPersona</td>
+                                        <td><strong>@persona.Direccion</strong></td>
+                                        <td>@persona.FechaNacimiento.ToShortDateString()</td>
+                                        <td>@persona.Legajo</td>
+                                        <td>@persona.Telefono</td>
+                                        <td>
+                                            <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem; font-weight: 500; background: @(persona.TipoPersona == "Alumno" ? "#dbeafe" : persona.TipoPersona == "Profesor" ? "#d1fae5" : "#f3f4f6"); color: @(persona.TipoPersona == "Alumno" ? "#1e40af" : persona.TipoPersona == "Profesor" ? "#065f46" : "#374151");">
+                                                @persona.TipoPersona
+                                            </span>
+                                        </td>
+                                        <td>@planDesc</td> 
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="7" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No hay personas registradas</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-modern btn-primary" @onclick="RefreshPersonas">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refrescar</span>
+                    </button>
+                    <button class="btn-modern btn-success" @onclick="AgregarPersona">
+                        <i class="fas fa-plus"></i>
+                        <span>Agregar</span>
+                    </button>
+                    <button class="btn-modern btn-warning" disabled="@(selectedPersona == null)" @onclick="ModificarPersona">
+                        <i class="fas fa-edit"></i>
+                        <span>Modificar</span>
+                    </button>
+                    <button class="btn-modern btn-danger" disabled="@(selectedPersona == null)" @onclick="EliminarPersona">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+
+                @if (selectedPersona != null)
+                {
+                    <div class="selection-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Persona seleccionada:</strong> ID @selectedPersona.IdPersona - @selectedPersona.TipoPersona
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (showDetalle)
+{
+    <PersonaDetalle Persona="@personaDetalle"
+                    IsEditMode="@isEditMode"
+                    OnSave="@HandleSave"
+                    OnCancel="@HandleCancel" />
+}
+
+@if (showDeleteConfirm)
+{
+    <div class="modal-modern fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content-modern">
+                <div class="modal-header-modern">
+                    <h5>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Confirmar eliminación
+                    </h5>
+                    <button type="button" class="alert-close-btn" @onclick="CancelDelete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body-modern">
+                    <p>¿Está seguro que desea eliminar la persona con ID <strong>@selectedPersona?.IdPersona</strong>?</p>
+                    <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer-modern">
+                    <button type="button" class="btn-modern" style="background: #64748b; color: #fff;" @onclick="CancelDelete" disabled="@isDeleting">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-modern btn-danger" @onclick="ConfirmDelete" disabled="@isDeleting">
+                        @if (isDeleting)
+                        {
+                            <div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px; margin-right: 0.5rem;"></div>
+                        }
+                        else
+                        {
+                            <i class="fas fa-trash-alt"></i>
+                        }
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<PersonaDTO>? personas;
+    private PersonaDTO? selectedPersona;
+    private PersonaDTO personaDetalle = new PersonaDTO();
+    private bool loading = true;
+    private bool showDetalle = false;
+    private bool isEditMode = false;
+    private bool showDeleteConfirm = false;
+    private bool isDeleting = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
+    private List<PlanDTO>? planes; 
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPersonas();
+    }
+
+    private async Task LoadPersonas()
+    {
+        try
+        {
+            loading = true;
+            errorMessage = string.Empty;
+            personas = (await PersonaApiClient.GetAllAsync())?.ToList();
+            planes = (await PlanApiClient.GetAllAsync())?.ToList(); 
+            selectedPersona = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar personas: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SelectPersona(PersonaDTO persona)
+    {
+        selectedPersona = selectedPersona?.IdPersona == persona.IdPersona ? null : persona;
+    }
+
+    private async Task RefreshPersonas()
+    {
+        await LoadPersonas();
+        successMessage = "Lista actualizada correctamente";
+    }
+
+    private void AgregarPersona()
+    {
+        personaDetalle = new PersonaDTO
+            {
+                FechaNacimiento = DateTime.Now
+            };
+        isEditMode = false;
+        showDetalle = true;
+    }
+
+    private async void ModificarPersona()
+    {
+        if (selectedPersona == null) return;
+
+        try
+        {
+            var persona = await PersonaApiClient.GetAsync(selectedPersona.IdPersona);
+            if (persona != null)
+            {
+                personaDetalle = persona;
+                isEditMode = true;
+                showDetalle = true;
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar persona: {ex.Message}";
+        }
+    }
+
+    private void EliminarPersona()
+    {
+        if (selectedPersona == null) return;
+        showDeleteConfirm = true;
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            isDeleting = true;
+            await PersonaApiClient.DeleteAsync(selectedPersona!.IdPersona);
+            successMessage = $"Persona eliminada correctamente";
+            showDeleteConfirm = false;
+            selectedPersona = null;
+            await LoadPersonas();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar persona: {ex.Message}";
+        }
+        finally
+        {
+            isDeleting = false;
+        }
+    }
+
+    private void CancelDelete()
+    {
+        showDeleteConfirm = false;
+    }
+
+    private async Task HandleSave()
+    {
+        showDetalle = false;
+        successMessage = isEditMode ? "Persona modificada correctamente" : "Persona agregada correctamente";
+        await LoadPersonas();
+    }
+
+    private void HandleCancel()
+    {
+        showDetalle = false;
+    }
+}

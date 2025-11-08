@@ -115,6 +115,7 @@
             cancelarButton.TabIndex = 27;
             cancelarButton.Text = "Cancelar";
             cancelarButton.UseVisualStyleBackColor = true;
+            cancelarButton.Click += cancelarButton_Click;
             // 
             // aceptarButton
             // 
@@ -125,6 +126,7 @@
             aceptarButton.TabIndex = 26;
             aceptarButton.Text = "Aceptar";
             aceptarButton.UseVisualStyleBackColor = true;
+            aceptarButton.Click += aceptarButton_Click;
             // 
             // planLabel
             // 

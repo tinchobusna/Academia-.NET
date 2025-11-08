@@ -62,6 +62,7 @@
             cancelarButton.TabIndex = 41;
             cancelarButton.Text = "Cancelar";
             cancelarButton.UseVisualStyleBackColor = true;
+            cancelarButton.Click += cancelarButton_Click;
             // 
             // aceptarButton
             // 
@@ -72,6 +73,7 @@
             aceptarButton.TabIndex = 40;
             aceptarButton.Text = "Aceptar";
             aceptarButton.UseVisualStyleBackColor = true;
+            aceptarButton.Click += aceptarButton_Click;
             // 
             // EspecialidadDetalle
             // 
@@ -83,7 +85,7 @@
             Controls.Add(cancelarButton);
             Controls.Add(aceptarButton);
             Name = "EspecialidadDetalle";
-            Text = "Form1";
+            Text = "Especialidad Detalle";
             ResumeLayout(false);
             PerformLayout();
         }

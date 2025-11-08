@@ -41,6 +41,7 @@
             reportePlanesButton.TabIndex = 0;
             reportePlanesButton.Text = "Planes";
             reportePlanesButton.UseVisualStyleBackColor = true;
+
             // 
             // reporteCursosButton
             // 

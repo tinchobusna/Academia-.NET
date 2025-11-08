@@ -1,61 +1,85 @@
-@page "/login"
-@inject HttpClient Http
+﻿@page "/login"
+@layout EmptyLayout
+@using API.Usuarios
+@using API.Personas
+@using DTOs
 @inject NavigationManager Navigation
-@inject AuthenticationStateService AuthState
+@inject IJSRuntime JSRuntime
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Iniciar Sesión</h3>
-                </div>
-                <div class="card-body">
-                    @if (!string.IsNullOrEmpty(errorMessage))
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            @errorMessage
-                        </div>
-                    }
+<PageTitle>Login - Sistema Académico</PageTitle>
 
-                    <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin">
-                        <DataAnnotationsValidator />
-                        
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <InputText id="email" class="form-control" @bind-Value="loginModel.Email" placeholder="Ingrese su email" />
-                            <ValidationMessage For="@(() => loginModel.Email)" />
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <InputText id="password" type="password" class="form-control" @bind-Value="loginModel.Password" placeholder="Ingrese su contraseña" />
-                            <ValidationMessage For="@(() => loginModel.Password)" />
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary" disabled="@isLoading">
-                                @if (isLoading)
-                                {
-                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                    <span>Iniciando sesión...</span>
-                                }
-                                else
-                                {
-                                    <span>Iniciar Sesión</span>
-                                }
-                            </button>
-                        </div>
-                    </EditForm>
-                </div>
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-icon">
+                <i class="fas fa-graduation-cap"></i>
             </div>
+            <h1 class="login-title">Sistema Académico</h1>
+            <p class="login-subtitle">Iniciar Sesión</p>
+        </div>
+        
+        <div class="login-body">
+            <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </label>
+                    <InputText id="email"
+                               class="form-control"
+                               @bind-Value="loginModel.Email"
+                               placeholder="Ingrese su email"
+                               disabled="@isLoading" />
+                    <ValidationMessage For="@(() => loginModel.Email)" class="text-danger validation-message" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock"></i>
+                        <span>Contraseña</span>
+                    </label>
+                    <InputText id="password"
+                               type="password"
+                               class="form-control"
+                               @bind-Value="loginModel.Password"
+                               placeholder="Ingrese su contraseña"
+                               disabled="@isLoading" />
+                    <ValidationMessage For="@(() => loginModel.Password)" class="text-danger validation-message" />
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>@errorMessage</span>
+                        <button type="button" class="alert-close" @onclick="() => errorMessage = string.Empty">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                }
+
+                <button type="submit" class="btn-login" disabled="@isLoading">
+                    @if (isLoading)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                        <span>Validando...</span>
+                    }
+                    else
+                    {
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Ingresar</span>
+                    }
+                </button>
+            </EditForm>
         </div>
     </div>
 </div>
 
 @code {
     private LoginModel loginModel = new();
-    private string errorMessage = string.Empty;
+    private string errorMessage = "";
     private bool isLoading = false;
 
     private async Task HandleLogin()
@@ -63,32 +87,60 @@
         try
         {
             isLoading = true;
-            errorMessage = string.Empty;
+            errorMessage = "";
 
-            var usuario = await API.Usuarios.UsuarioApiClient.Login(loginModel.Email, loginModel.Password);
+            if (string.IsNullOrWhiteSpace(loginModel.Email) || string.IsNullOrWhiteSpace(loginModel.Password))
+            {
+                errorMessage = "Email y contraseña son requeridos";
+                return;
+            }
+
+            var usuario = await UsuarioApiClient.Login(loginModel.Email, loginModel.Password);
 
             if (usuario != null)
             {
-                var persona = await API.Personas.PersonaApiClient.GetAsync(usuario.IdPersona);
-                
+
+                var persona = await PersonaApiClient.GetAsync(usuario.IdPersona);
+
                 if (persona != null)
                 {
-                    AuthState.SetAuthenticationState(usuario, persona);
-                    Navigation.NavigateTo("/");
+                 
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "usuarioId", usuario.IdUsuario.ToString());
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "personaId", persona.IdPersona.ToString());
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "tipoPersona", persona.TipoPersona);
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "nombreUsuario", $"{usuario.Nombre} {usuario.Apellido}");
+
+                    if (persona.TipoPersona == "Profesor")
+                    {
+                        Navigation.NavigateTo("/home-profesor", true);
+                    }
+                    else if (persona.TipoPersona == "Alumno")
+                    {
+                        Navigation.NavigateTo("/home-alumno", true);
+                    }
+                    else
+                    {
+
+                        Navigation.NavigateTo("/home", true);
+                    }
                 }
                 else
                 {
-                    errorMessage = "Error al obtener información del usuario";
+                    errorMessage = "No se pudo obtener información de la persona";
                 }
             }
             else
             {
-                errorMessage = "Usuario o contraseña incorrectos";
+                errorMessage = "Email o contraseña incorrectos";
             }
+        }
+        catch (HttpRequestException ex)
+        {
+            errorMessage = $"Error de conexión con el servidor: {ex.Message}";
         }
         catch (Exception ex)
         {
-            errorMessage = $"Error al iniciar sesión: {ex.Message}";
+            errorMessage = $"Error inesperado: {ex.Message}";
         }
         finally
         {
@@ -98,7 +150,11 @@
 
     public class LoginModel
     {
-        public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "El email es requerido")]
+        [System.ComponentModel.DataAnnotations.EmailAddress(ErrorMessage = "Email inválido")]
+        public string Email { get; set; } = "";
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "La contraseña es requerida")]
+        public string Password { get; set; } = "";
     }
 }

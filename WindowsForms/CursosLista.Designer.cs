@@ -44,6 +44,7 @@
             refrescarButton.TabIndex = 20;
             refrescarButton.Text = "Refrescar";
             refrescarButton.UseVisualStyleBackColor = true;
+            refrescarButton.Click += refrescarButton_Click;
             // 
             // modificarButton
             // 
@@ -54,6 +55,7 @@
             modificarButton.TabIndex = 19;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
+            modificarButton.Click += modificarButton_Click;
             // 
             // eliminarButton
             // 
@@ -64,6 +66,7 @@
             eliminarButton.TabIndex = 18;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
+            eliminarButton.Click += eliminarButton_Click;
             // 
             // agregarButton
             // 
@@ -74,6 +77,7 @@
             agregarButton.TabIndex = 17;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
+            agregarButton.Click += agregarButton_Click;
             // 
             // cursosDataGridView
             // 

@@ -1,0 +1,292 @@
+﻿@page "/cursos"
+@using DTOs
+@using API.Cursos
+@using API.ProfesoresCursos
+@using API.Usuarios
+@using API.Materias
+@using API.Comisiones
+
+@using BlazorWebAssembly.Components
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Cursos</PageTitle>
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-header-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <div class="page-header-text">
+                <h1>Gestión de Cursos</h1>
+                <p>Administra y gestiona todos los cursos del sistema académico</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+        <div style="padding: 2rem;">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert-modern alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>@errorMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => errorMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert-modern alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>@successMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => successMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (loading)
+            {
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Cargando cursos...</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive-modern">
+                    <table class="table-modern">
+                        <thead>
+                            <tr>
+                                <th>IdCurso</th>
+                                <th>Descripción</th>
+                                <th>Año Calendario</th>
+                                <th>Cupo</th>
+                                <th>Materia</th> 
+                                <th>Comisión</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (cursos != null && cursos.Any())
+                            {
+                                @foreach (var curso in cursos)
+                                {
+                                    var materiaDesc = materias?.FirstOrDefault(m => m.IdMateria == curso.IdMateria)?.Descripcion ?? "Sin materia";
+                                    var comisionDesc = comisiones?.FirstOrDefault(c => c.IdComision == curso.IdComision)?.Descripcion ?? "Sin comisión";
+                                    <tr @onclick="() => SelectCurso(curso)"
+                                        class="@(selectedCurso?.IdCurso == curso.IdCurso ? "table-active" : "")"
+                                        style="cursor: pointer;">
+                                        <td>@curso.IdCurso</td>
+                                        <td><strong>@curso.Descripcion</strong></td>
+                                        <td>@curso.AnioCalendario</td>
+                                        <td>@curso.Cupo</td>
+                                        <td>@materiaDesc</td> 
+                                        <td>@comisionDesc</td> 
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No hay cursos registrados</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-modern btn-primary" @onclick="RefreshCursos">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refrescar</span>
+                    </button>
+                    <button class="btn-modern btn-success" @onclick="AgregarCurso">
+                        <i class="fas fa-plus"></i>
+                        <span>Agregar</span>
+                    </button>
+                    <button class="btn-modern btn-warning" disabled="@(selectedCurso == null)" @onclick="ModificarCurso">
+                        <i class="fas fa-edit"></i>
+                        <span>Modificar</span>
+                    </button>
+                    <button class="btn-modern btn-danger" disabled="@(selectedCurso == null)" @onclick="EliminarCurso">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+
+                @if (selectedCurso != null)
+                {
+                    <div class="selection-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Curso seleccionado:</strong> @selectedCurso.Descripcion (ID: @selectedCurso.IdCurso)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (showDetalle)
+{
+    <CursoDetalle Curso="@cursoDetalle"
+                  IsEditMode="@isEditMode"
+                  OnSave="@HandleSave"
+                  OnCancel="@HandleCancel" />
+}
+
+@if (showDeleteConfirm)
+{
+    <div class="modal-modern fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content-modern">
+                <div class="modal-header-modern">
+                    <h5>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Confirmar eliminación
+                    </h5>
+                    <button type="button" class="alert-close-btn" @onclick="CancelDelete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body-modern">
+                    <p>¿Está seguro de eliminar el curso <strong>@selectedCurso?.Descripcion</strong>?</p>
+                    <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer-modern">
+                    <button type="button" class="btn-modern" style="background: #64748b; color: #fff;" @onclick="CancelDelete" disabled="@isDeleting">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-modern btn-danger" @onclick="ConfirmDelete" disabled="@isDeleting">
+                        @if (isDeleting)
+                        {
+                            <div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px; margin-right: 0.5rem;"></div>
+                        }
+                        else
+                        {
+                            <i class="fas fa-trash-alt"></i>
+                        }
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<CursoDTO>? cursos;
+    private List<ProfesorCursoDTO>? ProfesoresCursos;
+    private List<PersonaDTO>? personas;
+    private List<UsuarioDTO>? usuarios;
+    private List<MateriaDTO>? materias; 
+    private List<ComisionDTO>? comisiones;
+    private CursoDTO? selectedCurso;
+    private CursoDTO cursoDetalle = new();
+    private bool loading = true;
+    private bool showDetalle = false;
+    private bool isEditMode = false;
+    private bool showDeleteConfirm = false;
+    private bool isDeleting = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync() => await LoadCursos();
+
+    private async Task LoadCursos()
+    {
+        try
+        {
+            loading = true;
+            cursos = (await CursoApiClient.GetAllAsync())?.ToList();
+            materias = (await MateriaApiClient.GetAllAsync())?.ToList();
+            comisiones = (await ComisionApiClient.GetAllAsync())?.ToList();
+            selectedCurso = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar cursos: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SelectCurso(CursoDTO curso) =>
+        selectedCurso = selectedCurso?.IdCurso == curso.IdCurso ? null : curso;
+
+    private async Task RefreshCursos()
+    {
+        await LoadCursos();
+        successMessage = "Lista actualizada correctamente";
+    }
+
+    private void AgregarCurso()
+    {
+        cursoDetalle = new();
+        isEditMode = false;
+        showDetalle = true;
+    }
+
+    private async void ModificarCurso()
+    {
+        if (selectedCurso == null) return;
+        try
+        {
+            var curso = await CursoApiClient.GetAsync(selectedCurso.IdCurso);
+            if (curso != null)
+            {
+                cursoDetalle = curso;
+                isEditMode = true;
+                showDetalle = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar curso: {ex.Message}";
+        }
+    }
+
+    private void EliminarCurso() => showDeleteConfirm = true;
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            isDeleting = true;
+            await CursoApiClient.DeleteAsync(selectedCurso!.IdCurso);
+            successMessage = "Curso eliminado correctamente";
+            showDeleteConfirm = false;
+            await LoadCursos();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar curso: {ex.Message}";
+        }
+        finally
+        {
+            isDeleting = false;
+        }
+    }
+
+    private void CancelDelete() => showDeleteConfirm = false;
+
+    private async Task HandleSave()
+    {
+        showDetalle = false;
+        successMessage = isEditMode ? "Curso modificado correctamente" : "Curso agregado correctamente";
+        await LoadCursos();
+    }
+
+    private void HandleCancel() => showDetalle = false;
+}

@@ -41,6 +41,7 @@
             buttonInscribirse.TabIndex = 3;
             buttonInscribirse.Text = "Inscribirse";
             buttonInscribirse.UseVisualStyleBackColor = true;
+            buttonInscribirse.Click += buttonInscribirse_Click;
             // 
             // dataGridViewCursos
             // 

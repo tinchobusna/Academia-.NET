@@ -1,0 +1,289 @@
+﻿@page "/especialidades"
+@using DTOs
+@using API.Especialidades
+@using BlazorWebAssembly.Components
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+<PageTitle>Especialidades</PageTitle>
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-header-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="page-header-text">
+                <h1>Gestión de Especialidades</h1>
+                <p>Gestiona especialidades y carreras académicas</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+        <div style="padding: 2rem;">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert-modern alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>@errorMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => errorMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert-modern alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>@successMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => successMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (loading)
+            {
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Cargando especialidades...</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive-modern">
+                    <table class="table-modern">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (especialidades != null && especialidades.Any())
+                            {
+                                @foreach (var especialidad in especialidades)
+                                {
+                                    <tr @onclick="() => SelectEspecialidad(especialidad)"
+                                        class="@(selectedEspecialidad?.IdEspecialidad == especialidad.IdEspecialidad ? "table-active" : "")"
+                                        style="cursor: pointer;">
+                                        <td>@especialidad.IdEspecialidad</td>
+                                        <td><strong>@especialidad.Descripcion</strong></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="2" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No hay especialidades registradas</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-modern btn-primary" @onclick="RefreshEspecialidades">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refrescar</span>
+                    </button>
+                    <button class="btn-modern btn-success" @onclick="AgregarEspecialidad">
+                        <i class="fas fa-plus"></i>
+                        <span>Agregar</span>
+                    </button>
+                    <button class="btn-modern btn-warning" disabled="@(selectedEspecialidad == null)" @onclick="ModificarEspecialidad">
+                        <i class="fas fa-edit"></i>
+                        <span>Modificar</span>
+                    </button>
+                    <button class="btn-modern btn-danger" disabled="@(selectedEspecialidad == null)" @onclick="EliminarEspecialidad">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+
+                @if (selectedEspecialidad != null)
+                {
+                    <div class="selection-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Especialidad seleccionada:</strong> @selectedEspecialidad.Descripcion (ID: @selectedEspecialidad.IdEspecialidad)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (showDetalle)
+{
+    <EspecialidadDetalle Especialidad="@especialidadDetalle"
+                         IsEditMode="@isEditMode"
+                         OnSave="@HandleSave"
+                         OnCancel="@HandleCancel" />
+}
+
+@if (showDeleteConfirm)
+{
+    <div class="modal-modern fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content-modern">
+                <div class="modal-header-modern">
+                    <h5>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Confirmar eliminación
+                    </h5>
+                    <button type="button" class="alert-close-btn" @onclick="CancelDelete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body-modern">
+                    <p>¿Está seguro que desea eliminar la especialidad <strong>@selectedEspecialidad?.Descripcion</strong> (ID: @selectedEspecialidad?.IdEspecialidad)?</p>
+                    <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer-modern">
+                    <button type="button" class="btn-modern" style="background: #64748b; color: #fff;" @onclick="CancelDelete" disabled="@isDeleting">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-modern btn-danger" @onclick="ConfirmDelete" disabled="@isDeleting">
+                        @if (isDeleting)
+                        {
+                            <div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px; margin-right: 0.5rem;"></div>
+                        }
+                        else
+                        {
+                            <i class="fas fa-trash-alt"></i>
+                        }
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<EspecialidadDTO>? especialidades;
+    private EspecialidadDTO? selectedEspecialidad;
+    private EspecialidadDTO especialidadDetalle = new EspecialidadDTO();
+    private bool loading = true;
+    private bool showDetalle = false;
+    private bool isEditMode = false;
+    private bool showDeleteConfirm = false;
+    private bool isDeleting = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadEspecialidades();
+    }
+
+    private async Task LoadEspecialidades()
+    {
+        try
+        {
+            loading = true;
+            errorMessage = string.Empty;
+            especialidades = (await EspecialidadApiClient.GetAllAsync())?.ToList();
+            selectedEspecialidad = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar especialidades: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SelectEspecialidad(EspecialidadDTO especialidad)
+    {
+        selectedEspecialidad = selectedEspecialidad?.IdEspecialidad == especialidad.IdEspecialidad ? null : especialidad;
+    }
+
+    private async Task RefreshEspecialidades()
+    {
+        await LoadEspecialidades();
+        successMessage = "Lista actualizada correctamente";
+    }
+
+    private void AgregarEspecialidad()
+    {
+        especialidadDetalle = new EspecialidadDTO();
+        isEditMode = false;
+        showDetalle = true;
+    }
+
+    private async void ModificarEspecialidad()
+    {
+        if (selectedEspecialidad == null) return;
+        try
+        {
+            var esp = await EspecialidadApiClient.GetAsync(selectedEspecialidad.IdEspecialidad);
+            if (esp != null)
+            {
+                especialidadDetalle = esp;
+                isEditMode = true;
+                showDetalle = true;
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar especialidad: {ex.Message}";
+        }
+    }
+
+    private void EliminarEspecialidad()
+    {
+        if (selectedEspecialidad == null) return;
+        showDeleteConfirm = true;
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            isDeleting = true;
+            await EspecialidadApiClient.DeleteAsync(selectedEspecialidad!.IdEspecialidad);
+            successMessage = $"Especialidad '{selectedEspecialidad.Descripcion}' eliminada correctamente";
+            showDeleteConfirm = false;
+            selectedEspecialidad = null;
+            await LoadEspecialidades();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar especialidad: {ex.Message}";
+        }
+        finally
+        {
+            isDeleting = false;
+        }
+    }
+
+    private void CancelDelete()
+    {
+        showDeleteConfirm = false;
+    }
+
+    private async Task HandleSave()
+    {
+        showDetalle = false;
+        successMessage = isEditMode ? "Especialidad modificada correctamente" : "Especialidad agregada correctamente";
+        await LoadEspecialidades();
+    }
+
+    private void HandleCancel()
+    {
+        showDetalle = false;
+    }
+}

@@ -44,6 +44,7 @@
             refrescarButton.TabIndex = 19;
             refrescarButton.Text = "Refrescar";
             refrescarButton.UseVisualStyleBackColor = true;
+            refrescarButton.Click += refrescarButton_Click;
             // 
             // modificarButton
             // 
@@ -54,6 +55,7 @@
             modificarButton.TabIndex = 18;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
+            modificarButton.Click += modificarButton_Click;
             // 
             // eliminarButton
             // 
@@ -64,6 +66,7 @@
             eliminarButton.TabIndex = 17;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
+            eliminarButton.Click += eliminarButton_Click;
             // 
             // agregarButton
             // 
@@ -74,6 +77,7 @@
             agregarButton.TabIndex = 16;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
+            agregarButton.Click += agregarButton_Click;
             // 
             // especialidadesDataGridView
             // 

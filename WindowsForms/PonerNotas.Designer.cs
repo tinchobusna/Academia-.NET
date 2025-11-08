@@ -53,6 +53,7 @@
             buttonPonerNota.TabIndex = 10;
             buttonPonerNota.Text = "Poner Nota";
             buttonPonerNota.UseVisualStyleBackColor = true;
+            buttonPonerNota.Click += buttonPonerNota_Click;
             // 
             // dataGridViewAlumnos
             // 
@@ -71,6 +72,7 @@
             buttonFiltrar.TabIndex = 8;
             buttonFiltrar.Text = "Filtrar";
             buttonFiltrar.UseVisualStyleBackColor = true;
+            buttonFiltrar.Click += buttonFiltrar_Click;
             // 
             // comboBoxCursos
             // 

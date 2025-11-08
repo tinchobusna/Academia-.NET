@@ -1,150 +1,129 @@
-﻿@page "/"
-@inject AuthenticationStateService AuthState
-@inject NavigationManager Navigation
+﻿@page "/home"
 
-<PageTitle>Sistema de Gestión Académica</PageTitle>
+<PageTitle>Sistema Académico</PageTitle>
 
-@if (!AuthState.IsAuthenticated)
-{
-    Navigation.NavigateTo("/login");
-}
-else
-{
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="mb-4">Bienvenido, @AuthState.CurrentUser?.Nombre @AuthState.CurrentUser?.Apellido</h1>
-                <div class="alert alert-info">
-                    <strong>Rol:</strong> @GetRoleDisplayName()
+<div class="home-container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-icon-wrapper">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 class="hero-title">Sistema de Gestión Académica</h1>
+            <p class="hero-subtitle">Bienvenido al sistema integral de gestión educativa</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Módulos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Eficiencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Disponible</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row mt-4">
-            @if (AuthState.UserRole == "Admin")
-            {
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Especialidades</h5>
-                            <p class="card-text">Administrar especialidades del sistema</p>
-                            <a href="/especialidades" class="btn btn-primary">Ir a Especialidades</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Planes</h5>
-                            <p class="card-text">Administrar planes de estudio</p>
-                            <a href="/planes" class="btn btn-primary">Ir a Planes</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Materias</h5>
-                            <p class="card-text">Administrar materias</p>
-                            <a href="/materias" class="btn btn-primary">Ir a Materias</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Comisiones</h5>
-                            <p class="card-text">Administrar comisiones</p>
-                            <a href="/comisiones" class="btn btn-primary">Ir a Comisiones</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Cursos</h5>
-                            <p class="card-text">Administrar cursos</p>
-                            <a href="/cursos" class="btn btn-primary">Ir a Cursos</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Personas</h5>
-                            <p class="card-text">Administrar personas</p>
-                            <a href="/personas" class="btn btn-primary">Ir a Personas</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Gestión de Usuarios</h5>
-                            <p class="card-text">Administrar usuarios del sistema</p>
-                            <a href="/usuarios" class="btn btn-primary">Ir a Usuarios</a>
-                        </div>
-                    </div>
-                </div>
-            }
+    <!-- Features Grid -->
+    <div class="features-grid">
+        <div class="feature-card card-primary">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3 class="feature-title">Usuarios</h3>
+            <p class="feature-description">Gestión completa de usuarios del sistema con roles y permisos</p>
+            <a href="/usuarios" class="feature-btn">
+                <span>Ver Usuarios</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
 
-            @if (AuthState.UserRole == "Alumno")
-            {
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Inscribirse a Curso</h5>
-                            <p class="card-text">Inscribirse a cursos disponibles</p>
-                            <a href="/inscribirse" class="btn btn-primary">Ir a Inscripción</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Ver Notas</h5>
-                            <p class="card-text">Consultar mis calificaciones</p>
-                            <a href="/ver-notas" class="btn btn-primary">Ver Mis Notas</a>
-                        </div>
-                    </div>
-                </div>
-            }
+        <div class="feature-card card-success">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3 class="feature-title">Personas</h3>
+            <p class="feature-description">Administra estudiantes, profesores y personal administrativo</p>
+            <a href="/personas" class="feature-btn">
+                <span>Ver Personas</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
 
-            @if (AuthState.UserRole == "Docente")
-            {
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Poner Notas</h5>
-                            <p class="card-text">Asignar calificaciones a alumnos</p>
-                            <a href="/poner-notas" class="btn btn-primary">Ir a Calificaciones</a>
-                        </div>
-                    </div>
-                </div>
-            }
+        <div class="feature-card card-warning">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3 class="feature-title">Cursos</h3>
+            <p class="feature-description">Gestiona cursos, horarios y asignación de profesores</p>
+            <a href="/cursos" class="feature-btn">
+                <span>Ver Cursos</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="feature-card card-info">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h3 class="feature-title">Materias</h3>
+            <p class="feature-description">Administra materias, planes de estudio y contenidos</p>
+            <a href="/materias" class="feature-btn">
+                <span>Ver Materias</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="feature-card card-purple">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-users-cog"></i>
+            </div>
+            <h3 class="feature-title">Comisiones</h3>
+            <p class="feature-description">Organiza comisiones y grupos de estudiantes</p>
+            <a href="/comisiones" class="feature-btn">
+                <span>Ver Comisiones</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="feature-card card-teal">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-award"></i>
+            </div>
+            <h3 class="feature-title">Especialidades</h3>
+            <p class="feature-description">Gestiona especialidades y carreras académicas</p>
+            <a href="/especialidades" class="feature-btn">
+                <span>Ver Especialidades</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="feature-card card-indigo">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-folder"></i>
+            </div>
+            <h3 class="feature-title">Planes</h3>
+            <p class="feature-description">Administra planes de estudio y mallas curriculares</p>
+            <a href="/planes" class="feature-btn">
+                <span>Ver Planes</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="feature-card card-orange">
+            <div class="feature-icon-wrapper">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h3 class="feature-title">Reportes</h3>
+            <p class="feature-description">Genera reportes y estadísticas del sistema</p>
+            <a href="/reportes" class="feature-btn">
+                <span>Ver Reportes</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </div>
-}
-
-@code {
-    protected override void OnInitialized()
-    {
-        AuthState.OnChange += StateHasChanged;
-    }
-
-    private string GetRoleDisplayName()
-    {
-        return AuthState.UserRole switch
-        {
-            "Admin" => "Administrador",
-            "Alumno" => "Alumno",
-            "Docente" => "Docente",
-            _ => "Desconocido"
-        };
-    }
-
-    public void Dispose()
-    {
-        AuthState.OnChange -= StateHasChanged;
-    }
-}
+</div>

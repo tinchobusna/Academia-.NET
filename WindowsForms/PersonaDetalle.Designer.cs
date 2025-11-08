@@ -158,6 +158,7 @@
             legajoNumericUpDown.Name = "legajoNumericUpDown";
             legajoNumericUpDown.Size = new Size(286, 27);
             legajoNumericUpDown.TabIndex = 20;
+            legajoNumericUpDown.Maximum = 999999;
             // 
             // textBoxTelefono
             // 

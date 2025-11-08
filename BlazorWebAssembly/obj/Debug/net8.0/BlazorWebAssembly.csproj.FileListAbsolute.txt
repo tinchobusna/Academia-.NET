@@ -1,9 +1,0 @@
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.AssemblyInfoInputs.cache
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.AssemblyInfo.cs
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.csproj.CoreCompileInputs.cache
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.sourcelink.json
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.csproj.AssemblyReference.cache
-C:\Users\marti\OneDrive\Escritorio\Academia-.NET\BlazorWebAssembly\obj\Debug\net8.0\BlazorWebAssembly.MvcApplicationPartsAssemblyInfo.cs

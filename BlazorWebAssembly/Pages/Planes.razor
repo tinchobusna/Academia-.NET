@@ -1,0 +1,288 @@
+﻿@page "/planes"
+@using DTOs
+@using API.Planes
+@using API.Especialidades
+@inject IJSRuntime JSRuntime
+@using BlazorWebAssembly.Components
+@inject NavigationManager Navigation
+
+<PageTitle>Planes</PageTitle>
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-header-icon">
+                <i class="fas fa-scroll"></i>
+            </div>
+            <div class="page-header-text">
+                <h1>Gestión de Planes</h1>
+                <p>Administra planes de estudio y mallas curriculares</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+        <div style="padding: 2rem;">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert-modern alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>@errorMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => errorMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert-modern alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>@successMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => successMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (loading)
+            {
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Cargando planes...</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive-modern">
+                    <table class="table-modern">
+                        <thead>
+                            <tr>
+                                <th>IdPlan</th>
+                                <th>Descripción</th>
+                                <th>Especialidad</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (planes != null && planes.Any())
+                            {
+                                @foreach (var plan in planes)
+                                {
+                                    var especialidadDesc = especialidades?.FirstOrDefault(e => e.IdEspecialidad == plan.IdEspecialidad)?.Descripcion ?? "Sin especialidad";
+                                    <tr @onclick="() => SelectPlan(plan)"
+                                        class="@(selectedPlan?.IdPlan == plan.IdPlan ? "table-active" : "")"
+                                        style="cursor: pointer;">
+                                        <td>@plan.IdPlan</td>
+                                        <td><strong>@plan.Descripcion</strong></td>
+                                        <td>@especialidadDesc</td> 
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No hay planes registrados</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-modern btn-primary" @onclick="RefreshPlanes">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refrescar</span>
+                    </button>
+                    <button class="btn-modern btn-success" @onclick="AgregarPlan">
+                        <i class="fas fa-plus"></i>
+                        <span>Agregar</span>
+                    </button>
+                    <button class="btn-modern btn-warning" disabled="@(selectedPlan == null)" @onclick="ModificarPlan">
+                        <i class="fas fa-edit"></i>
+                        <span>Modificar</span>
+                    </button>
+                    <button class="btn-modern btn-danger" disabled="@(selectedPlan == null)" @onclick="EliminarPlan">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+
+                @if (selectedPlan != null)
+                {
+                    <div class="selection-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Plan seleccionado:</strong> @selectedPlan.Descripcion (ID: @selectedPlan.IdPlan)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (showDetalle)
+{
+    <PlanDetalle Plan="@planDetalle"
+                 IsEditMode="@isEditMode"
+                 OnSave="@HandleSave"
+                 OnCancel="@HandleCancel" />
+}
+
+@if (showDeleteConfirm)
+{
+    <div class="modal-modern fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content-modern">
+                <div class="modal-header-modern">
+                    <h5>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Confirmar eliminación
+                    </h5>
+                    <button type="button" class="alert-close-btn" @onclick="CancelDelete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body-modern">
+                    <p>¿Está seguro de eliminar el plan <strong>@selectedPlan?.Descripcion</strong>?</p>
+                    <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer-modern">
+                    <button type="button" class="btn-modern" style="background: #64748b; color: #fff;" @onclick="CancelDelete" disabled="@isDeleting">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-modern btn-danger" @onclick="ConfirmDelete" disabled="@isDeleting">
+                        @if (isDeleting)
+                        {
+                            <div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px; margin-right: 0.5rem;"></div>
+                        }
+                        else
+                        {
+                            <i class="fas fa-trash-alt"></i>
+                        }
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<PlanDTO>? planes;
+    private List<EspecialidadDTO>? especialidades;
+    private PlanDTO? selectedPlan;
+    private PlanDTO planDetalle = new();
+    private bool loading = true;
+    private bool showDetalle = false;
+    private bool isEditMode = false;
+    private bool showDeleteConfirm = false;
+    private bool isDeleting = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync() => await LoadPlanes();
+
+    private async Task LoadPlanes()
+    {
+        try
+        {
+            loading = true;
+            planes = (await PlanApiClient.GetAllAsync())?.ToList();
+            especialidades = (await EspecialidadApiClient.GetAllAsync())?.ToList(); 
+            selectedPlan = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar planes: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SelectPlan(PlanDTO plan) =>
+        selectedPlan = selectedPlan?.IdPlan == plan.IdPlan ? null : plan;
+
+    private async Task RefreshPlanes()
+    {
+        await LoadPlanes();
+        successMessage = "Lista actualizada correctamente";
+    }
+
+    private void AgregarPlan()
+    {
+        planDetalle = new();
+        isEditMode = false;
+        showDetalle = true;
+    }
+
+    private async Task ModificarPlan()
+    {
+        if (selectedPlan == null) return;
+        try
+        {
+            loading = true;
+            errorMessage = string.Empty;
+
+            var plan = await PlanApiClient.GetAsync(selectedPlan.IdPlan);
+            if (plan != null)
+            {
+                planDetalle = plan;
+                isEditMode = true;
+                showDetalle = true;
+            }
+            else
+            {
+                errorMessage = "No se encontró el plan seleccionado.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar plan: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void EliminarPlan() => showDeleteConfirm = true;
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            isDeleting = true;
+            await PlanApiClient.DeleteAsync(selectedPlan!.IdPlan);
+            successMessage = "Plan eliminado correctamente";
+            showDeleteConfirm = false;
+            await LoadPlanes();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar plan: {ex.Message}";
+        }
+        finally
+        {
+            isDeleting = false;
+        }
+    }
+
+    private void CancelDelete() => showDeleteConfirm = false;
+
+    private async Task HandleSave()
+    {
+        showDetalle = false;
+        successMessage = isEditMode ? "Plan modificado correctamente" : "Plan agregado correctamente";
+        await LoadPlanes();
+    }
+
+    private void HandleCancel() => showDetalle = false;
+}

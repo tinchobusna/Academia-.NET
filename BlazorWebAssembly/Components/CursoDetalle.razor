@@ -1,0 +1,275 @@
+﻿@using DTOs
+@using API.Cursos
+@using API.Materias
+@using API.Comisiones
+@using API.Personas
+@using API.Usuarios
+@using API.ProfesoresCursos
+
+<div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-book me-2"></i>
+                    @(IsEditMode ? "Modificar Curso" : "Agregar Curso")
+                </h5>
+                <button type="button" class="btn-close btn-close-white" @onclick="OnCancel"></button>
+            </div>
+            <div class="modal-body">
+                @if (loadingData)
+                {
+                    <div class="text-center p-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Cargando datos...</span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <EditForm Model="@Curso" OnValidSubmit="@HandleSubmit">
+                        <DataAnnotationsValidator />
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <InputText class="form-control" @bind-Value="Curso.Descripcion" />
+                            <ValidationMessage For="@(() => Curso.Descripcion)" class="text-danger" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Año Calendario</label>
+                            <InputNumber class="form-control" @bind-Value="Curso.AnioCalendario" />
+                            <ValidationMessage For="@(() => Curso.AnioCalendario)" class="text-danger" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Cupo</label>
+                            <InputNumber class="form-control" @bind-Value="Curso.Cupo" />
+                            <ValidationMessage For="@(() => Curso.Cupo)" class="text-danger" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Materia</label>
+                            <InputSelect class="form-select" @bind-Value="Curso.IdMateria">
+                                <option value="0">-- Seleccione una materia --</option>
+                                @foreach (var materia in materias ?? Enumerable.Empty<MateriaDTO>())
+                                {
+                                    <option value="@materia.IdMateria">@materia.Descripcion</option>
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => Curso.IdMateria)" class="text-danger" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Comisión</label>
+                            <InputSelect class="form-select" @bind-Value="Curso.IdComision">
+                                <option value="0">-- Seleccione una comisión --</option>
+                                @foreach (var comision in comisiones ?? Enumerable.Empty<ComisionDTO>())
+                                {
+                                    <option value="@comision.IdComision">@comision.Descripcion</option>
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => Curso.IdComision)" class="text-danger" />
+                        </div>
+
+                        @if (!IsEditMode)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">Profesor</label>
+                                <InputSelect class="form-select" @bind-Value="IdProfesor">
+                                    <option value="0">-- Seleccione un Profesor --</option>
+                                    @foreach (var Profesor in Profesores ?? Enumerable.Empty<ProfesorItem>())
+                                    {
+                                        <option value="@Profesor.IdPersona">@Profesor.NombreCompleto</option>
+                                    }
+                                </InputSelect>
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label class="form-label">Cargo</label>
+                            <InputSelect class="form-select" @bind-Value="Cargo">
+                                <option value="Teoría">Teoría</option>
+                                <option value="Práctica">Práctica</option>
+                            </InputSelect>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(ErrorMessage))
+                        {
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-triangle me-2"></i>@ErrorMessage
+                            </div>
+                        }
+
+                        <div class="modal-footer border-0 px-0 pb-0">
+                            <button type="button" class="btn btn-secondary" @onclick="OnCancel" disabled="@IsSaving">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" disabled="@IsSaving">
+                                @if (IsSaving)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                }
+                                Aceptar
+                            </button>
+                        </div>
+                    </EditForm>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public CursoDTO Curso { get; set; } = new CursoDTO();
+
+    [Parameter]
+    public bool IsEditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    private bool IsSaving = false;
+    private bool loadingData = true;
+    private string ErrorMessage = string.Empty;
+    private List<MateriaDTO>? materias;
+    private List<ComisionDTO>? comisiones;
+    private List<ProfesorItem>? Profesores;
+    private int IdProfesor = 0;
+    private string Cargo = "Teoría";
+    private ProfesorCursoDTO? ProfesorCursoActual;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarDatos();
+
+        if (IsEditMode)
+        {
+            // Traer el ProfesorCurso actual para el curso
+            var criterios = await ProfesorCursoApiClient.GetProfesorCursoByCriteria(0);
+            ProfesorCursoActual = criterios?.FirstOrDefault(dc => dc.IdCurso == Curso.IdCurso);
+            if (ProfesorCursoActual != null)
+            {
+                IdProfesor = ProfesorCursoActual.IdProfesor;
+                Cargo = ProfesorCursoActual.Cargo;
+            }
+        }
+    }
+
+    private async Task CargarDatos()
+    {
+        try
+        {
+            loadingData = true;
+
+            var materiasTask = MateriaApiClient.GetAllAsync();
+            var comisionesTask = ComisionApiClient.GetAllAsync();
+            var personasTask = PersonaApiClient.GetAllAsync();
+            var usuariosTask = UsuarioApiClient.GetAllAsync();
+
+            await Task.WhenAll(materiasTask, comisionesTask, personasTask, usuariosTask);
+
+            materias = materiasTask.Result?.ToList();
+            comisiones = comisionesTask.Result?.ToList();
+
+            var personas = personasTask.Result?.ToList() ?? new List<PersonaDTO>();
+            var usuarios = usuariosTask.Result?.ToList() ?? new List<UsuarioDTO>();
+
+            Profesores = (from persona in personas
+                        join usuario in usuarios on persona.IdPersona equals usuario.IdPersona
+                        where persona.TipoPersona == "Profesor"
+                        select new ProfesorItem
+                            {
+                                IdPersona = persona.IdPersona,
+                                NombreCompleto = $"{usuario.Nombre} {usuario.Apellido}"
+                            }).ToList();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Error al cargar datos: {ex.Message}";
+        }
+        finally
+        {
+            loadingData = false;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            IsSaving = true;
+            ErrorMessage = string.Empty;
+
+            // Validaciones
+            if (Curso.IdMateria == 0)
+            {
+                ErrorMessage = "Debe seleccionar una materia";
+                IsSaving = false;
+                return;
+            }
+            if (Curso.IdComision == 0)
+            {
+                ErrorMessage = "Debe seleccionar una comisión";
+                IsSaving = false;
+                return;
+            }
+            if (!IsEditMode && IdProfesor == 0)
+            {
+                ErrorMessage = "Debe seleccionar un Profesor";
+                IsSaving = false;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Cargo))
+            {
+                ErrorMessage = "Debe seleccionar un cargo";
+                IsSaving = false;
+                return;
+            }
+
+            if (IsEditMode)
+            {
+                await CursoApiClient.UpdateAsync(Curso);
+
+                
+                if (ProfesorCursoActual != null)
+                {
+                    ProfesorCursoActual.Cargo = Cargo;
+                    await ProfesorCursoApiClient.UpdateByCursoProfesorAsync(ProfesorCursoActual);
+                }
+            }
+            else
+            {
+                var cursoCreado = await CursoApiClient.AddAsync(Curso);
+
+                var ProfesorCurso = new ProfesorCursoDTO
+                    {
+                        IdCurso = cursoCreado.IdCurso,
+                        IdProfesor = IdProfesor,
+                        Cargo = Cargo
+                    };
+                await ProfesorCursoApiClient.AddAsync(ProfesorCurso);
+            }
+
+            await OnSave.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Error al guardar: {ex.Message}";
+        }
+        finally
+        {
+            IsSaving = false;
+        }
+    }
+
+    private class ProfesorItem
+    {
+        public int IdPersona { get; set; }
+        public string NombreCompleto { get; set; } = "";
+    }
+}

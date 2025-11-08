@@ -1,0 +1,339 @@
+﻿@page "/usuarios"
+@using DTOs
+@using API.Usuarios
+@using BlazorWebAssembly.Components
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+<PageTitle>Usuarios</PageTitle>
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-header-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="page-header-text">
+                <h1>Gestión de Usuarios</h1>
+                <p>Administra usuarios del sistema con roles y permisos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+        <div style="padding: 2rem;">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert-modern alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>@errorMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => errorMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert-modern alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>@successMessage</span>
+                    <button type="button" class="alert-close-btn" @onclick="() => successMessage = string.Empty">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+
+            @if (loading)
+            {
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Cargando usuarios...</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive-modern">
+                    <table class="table-modern">
+                        <thead>
+                            <tr>
+                                <th>IdUsuario</th>
+                                <th>Nombre Usuario</th>
+                                <th>Clave</th>
+                                <th>Habilitado</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Cambia Clave</th>
+                                <th>IdPersona</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (usuarios != null && usuarios.Any())
+                            {
+                                @foreach (var usuario in usuarios)
+                                {
+                                    <tr @onclick="() => SelectUsuario(usuario)"
+                                        class="@(selectedUsuario?.IdUsuario == usuario.IdUsuario ? "table-active" : "")"
+                                        style="cursor: pointer;">
+                                        <td>@usuario.IdUsuario</td>
+                                        <td><strong>@usuario.NombreUsuario</strong></td>
+                                        <td style="font-family: monospace; font-size: 0.9rem;">••••••••</td>
+                                        <td style="text-align: center;">
+                                            @if (usuario.Habilitado)
+                                            {
+                                                <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem; background: #d1fae5; color: #065f46; font-weight: 500;">
+                                                    <i class="fas fa-check-circle"></i> Sí
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem; background: #fee2e2; color: #991b1b; font-weight: 500;">
+                                                    <i class="fas fa-times-circle"></i> No
+                                                </span>
+                                            }
+                                        </td>
+                                        <td>@usuario.Nombre</td>
+                                        <td>@usuario.Apellido</td>
+                                        <td>@usuario.Email</td>
+                                        <td style="text-align: center;">
+                                            @if (usuario.CambiaClave)
+                                            {
+                                                <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem; background: #fef3c7; color: #92400e; font-weight: 500;">
+                                                    <i class="fas fa-check-circle"></i> Sí
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem; background: #f3f4f6; color: #6b7280; font-weight: 500;">
+                                                    <i class="fas fa-times-circle"></i> No
+                                                </span>
+                                            }
+                                        </td>
+                                        <td>@usuario.IdPersona</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No hay usuarios registrados</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-modern btn-primary" @onclick="RefreshUsuarios">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refrescar</span>
+                    </button>
+                    <button class="btn-modern btn-success" @onclick="AgregarUsuario">
+                        <i class="fas fa-plus"></i>
+                        <span>Agregar</span>
+                    </button>
+                    <button class="btn-modern btn-warning" disabled="@(selectedUsuario == null)" @onclick="ModificarUsuario">
+                        <i class="fas fa-edit"></i>
+                        <span>Modificar</span>
+                    </button>
+                    <button class="btn-modern btn-danger" disabled="@(selectedUsuario == null)" @onclick="EliminarUsuario">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+
+                @if (selectedUsuario != null)
+                {
+                    <div class="selection-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Usuario seleccionado:</strong> @selectedUsuario.Nombre @selectedUsuario.Apellido (@selectedUsuario.Email)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (showDetalle)
+{
+    <UsuarioDetalle Usuario="@usuarioDetalle"
+                    IsEditMode="@isEditMode"
+                    OnSave="@HandleSave"
+                    OnCancel="@HandleCancel" />
+}
+
+@if (showDeleteConfirm)
+{
+    <div class="modal-modern fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content-modern">
+                <div class="modal-header-modern">
+                    <h5>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Confirmar eliminación
+                    </h5>
+                    <button type="button" class="alert-close-btn" @onclick="CancelDelete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body-modern">
+                    <p>¿Está seguro que desea eliminar el usuario <strong>@selectedUsuario?.Nombre @selectedUsuario?.Apellido</strong> (ID: @selectedUsuario?.IdUsuario)?</p>
+                    <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer-modern">
+                    <button type="button" class="btn-modern" style="background: #64748b; color: #fff;" @onclick="CancelDelete" disabled="@isDeleting">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-modern btn-danger" @onclick="ConfirmDelete" disabled="@isDeleting">
+                        @if (isDeleting)
+                        {
+                            <div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px; margin-right: 0.5rem;"></div>
+                        }
+                        else
+                        {
+                            <i class="fas fa-trash-alt"></i>
+                        }
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<UsuarioDTO>? usuarios;
+    private UsuarioDTO? selectedUsuario;
+    private UsuarioDTO usuarioDetalle = new UsuarioDTO();
+    private bool loading = true;
+    private bool showDetalle = false;
+    private bool isEditMode = false;
+    private bool showDeleteConfirm = false;
+    private bool isDeleting = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsuarios();
+    }
+
+    private async Task LoadUsuarios()
+    {
+        try
+        {
+            loading = true;
+            errorMessage = string.Empty;
+            usuarios = (await UsuarioApiClient.GetAllAsync())?.ToList();
+            selectedUsuario = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar usuarios: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SelectUsuario(UsuarioDTO usuario)
+    {
+        selectedUsuario = selectedUsuario?.IdUsuario == usuario.IdUsuario ? null : usuario;
+    }
+
+    private async Task RefreshUsuarios()
+    {
+        await LoadUsuarios();
+        successMessage = "Lista actualizada correctamente";
+    }
+
+    // LÓGICA AGREGAR
+    private void AgregarUsuario()
+    {
+        usuarioDetalle = new UsuarioDTO
+            {
+                Habilitado = true,
+                CambiaClave = false,
+                IdPersona = 0
+            };
+        isEditMode = false;
+        showDetalle = true;
+    }
+
+    // LÓGICA MODIFICAR
+    private async void ModificarUsuario()
+    {
+        if (selectedUsuario == null) return;
+
+        try
+        {
+            var usuario = await UsuarioApiClient.GetAsync(selectedUsuario.IdUsuario);
+            if (usuario != null)
+            {
+                usuarioDetalle = usuario;
+                isEditMode = true;
+                showDetalle = true;
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al cargar usuario: {ex.Message}";
+        }
+    }
+
+    // LÓGICA ELIMINAR
+    private void EliminarUsuario()
+    {
+        if (selectedUsuario == null) return;
+        showDeleteConfirm = true;
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            isDeleting = true;
+            await UsuarioApiClient.DeleteAsync(selectedUsuario!.IdUsuario);
+            successMessage = $"Usuario {selectedUsuario.Nombre} {selectedUsuario.Apellido} eliminado correctamente";
+            showDeleteConfirm = false;
+            selectedUsuario = null;
+            await LoadUsuarios();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al eliminar usuario: {ex.Message}";
+        }
+        finally
+        {
+            isDeleting = false;
+        }
+    }
+
+    private void CancelDelete()
+    {
+        showDeleteConfirm = false;
+    }
+
+
+    private async Task HandleSave()
+    {
+        showDetalle = false;
+        successMessage = isEditMode ? "Usuario modificado correctamente" : "Usuario agregado correctamente";
+        await LoadUsuarios();
+    }
+
+    private void HandleCancel()
+    {
+        showDetalle = false;
+    }
+}
